@@ -1,0 +1,1657 @@
+FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+=================================== FAILURES ===================================
+_ test_multi_dot_two_tensors[ ie_device:CPU - precision:FP32 - dtype:torch.float32 ] _
+
+ie_device = 'CPU', precision = 'FP32', dtype = torch.float32
+
+    @pytest.mark.parametrize("dtype", [torch.float32, torch.float64])
+    def test_multi_dot_two_tensors(ie_device, precision, dtype):
+        # 🇮🇱 שני טנזורים – MatMul בודד.
+        A = make_small_tensor((3, 4), dtype=dtype, seed=1)
+        B = make_small_tensor((4, 2), dtype=dtype, seed=2)
+>       pt, ovv, _ = run_pt_and_ov([A, B], ie_device, precision, dtype=dtype)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1687: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1622: in run_pt_and_ov
+    ov_model = ov.convert_model(model, example_input=example)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert.py:105: in convert_model
+    ov_model, _ = _convert(cli_parser, params, True)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:578: in _convert
+    raise e
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:518: in _convert
+    ov_model = driver(argv, {"conversion_parameters": non_default_params})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:256: in driver
+    ov_model = moc_emit_ir(prepare_ir(argv), argv)
+                           ^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:195: in prepare_ir
+    ov_model = moc_pipeline(argv, moc_front_end)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/moc_frontend/pipeline.py:142: in moc_pipeline
+    ov_model = moc_front_end.convert(input_model)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <FrontEnd 'pytorch'>
+model = <openvino._pyopenvino.InputModel object at 0x736e2eb6e2d0>
+
+    def convert(self, model: Union[Model, InputModel]) -> Model:
+>       converted_model = super().convert(model)
+                          ^^^^^^^^^^^^^^^^^^^^^^
+E       openvino._pyopenvino.OpConversionFailure: Check 'is_conversion_successful' failed at src/frontends/pytorch/src/frontend.cpp:181:
+E       FrontEnd API failed with OpConversionFailure:
+E       Model wasn't fully converted. Failed operations detailed log:
+E       -- prim::ListConstruct with a message:
+E       Exception happened during conversion of operation prim::ListConstruct with schema (no schema)
+E       Check '(c_node)' failed at src/frontends/pytorch/src/op/list_construct.cpp:25:
+E       FrontEnd API failed with OpConversionFailure:
+E       [PyTorch Frontend] Translation for prim::ListConstruct support only constant inputs
+E       
+E       Summary:
+E       -- No conversion rule found for operations: aten::linalg_multi_dot
+E       -- Conversion is failed for: prim::ListConstruct
+
+../../ov_src_env/lib/python3.12/site-packages/openvino/frontend/frontend.py:18: OpConversionFailure
+_ test_multi_dot_two_tensors[ ie_device:CPU - precision:FP32 - dtype:torch.float64 ] _
+
+ie_device = 'CPU', precision = 'FP32', dtype = torch.float64
+
+    @pytest.mark.parametrize("dtype", [torch.float32, torch.float64])
+    def test_multi_dot_two_tensors(ie_device, precision, dtype):
+        # 🇮🇱 שני טנזורים – MatMul בודד.
+        A = make_small_tensor((3, 4), dtype=dtype, seed=1)
+        B = make_small_tensor((4, 2), dtype=dtype, seed=2)
+>       pt, ovv, _ = run_pt_and_ov([A, B], ie_device, precision, dtype=dtype)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1687: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1622: in run_pt_and_ov
+    ov_model = ov.convert_model(model, example_input=example)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert.py:105: in convert_model
+    ov_model, _ = _convert(cli_parser, params, True)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:578: in _convert
+    raise e
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:518: in _convert
+    ov_model = driver(argv, {"conversion_parameters": non_default_params})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:256: in driver
+    ov_model = moc_emit_ir(prepare_ir(argv), argv)
+                           ^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:195: in prepare_ir
+    ov_model = moc_pipeline(argv, moc_front_end)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/moc_frontend/pipeline.py:142: in moc_pipeline
+    ov_model = moc_front_end.convert(input_model)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <FrontEnd 'pytorch'>
+model = <openvino._pyopenvino.InputModel object at 0x736e37f8b710>
+
+    def convert(self, model: Union[Model, InputModel]) -> Model:
+>       converted_model = super().convert(model)
+                          ^^^^^^^^^^^^^^^^^^^^^^
+E       openvino._pyopenvino.OpConversionFailure: Check 'is_conversion_successful' failed at src/frontends/pytorch/src/frontend.cpp:181:
+E       FrontEnd API failed with OpConversionFailure:
+E       Model wasn't fully converted. Failed operations detailed log:
+E       -- prim::ListConstruct with a message:
+E       Exception happened during conversion of operation prim::ListConstruct with schema (no schema)
+E       Check '(c_node)' failed at src/frontends/pytorch/src/op/list_construct.cpp:25:
+E       FrontEnd API failed with OpConversionFailure:
+E       [PyTorch Frontend] Translation for prim::ListConstruct support only constant inputs
+E       
+E       Summary:
+E       -- No conversion rule found for operations: aten::linalg_multi_dot
+E       -- Conversion is failed for: prim::ListConstruct
+
+../../ov_src_env/lib/python3.12/site-packages/openvino/frontend/frontend.py:18: OpConversionFailure
+_ test_multi_dot_two_tensors[ ie_device:CPU - precision:FP16 - dtype:torch.float32 ] _
+
+ie_device = 'CPU', precision = 'FP16', dtype = torch.float32
+
+    @pytest.mark.parametrize("dtype", [torch.float32, torch.float64])
+    def test_multi_dot_two_tensors(ie_device, precision, dtype):
+        # 🇮🇱 שני טנזורים – MatMul בודד.
+        A = make_small_tensor((3, 4), dtype=dtype, seed=1)
+        B = make_small_tensor((4, 2), dtype=dtype, seed=2)
+>       pt, ovv, _ = run_pt_and_ov([A, B], ie_device, precision, dtype=dtype)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1687: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1622: in run_pt_and_ov
+    ov_model = ov.convert_model(model, example_input=example)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert.py:105: in convert_model
+    ov_model, _ = _convert(cli_parser, params, True)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:578: in _convert
+    raise e
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:518: in _convert
+    ov_model = driver(argv, {"conversion_parameters": non_default_params})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:256: in driver
+    ov_model = moc_emit_ir(prepare_ir(argv), argv)
+                           ^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:195: in prepare_ir
+    ov_model = moc_pipeline(argv, moc_front_end)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/moc_frontend/pipeline.py:142: in moc_pipeline
+    ov_model = moc_front_end.convert(input_model)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <FrontEnd 'pytorch'>
+model = <openvino._pyopenvino.InputModel object at 0x736e37f8b950>
+
+    def convert(self, model: Union[Model, InputModel]) -> Model:
+>       converted_model = super().convert(model)
+                          ^^^^^^^^^^^^^^^^^^^^^^
+E       openvino._pyopenvino.OpConversionFailure: Check 'is_conversion_successful' failed at src/frontends/pytorch/src/frontend.cpp:181:
+E       FrontEnd API failed with OpConversionFailure:
+E       Model wasn't fully converted. Failed operations detailed log:
+E       -- prim::ListConstruct with a message:
+E       Exception happened during conversion of operation prim::ListConstruct with schema (no schema)
+E       Check '(c_node)' failed at src/frontends/pytorch/src/op/list_construct.cpp:25:
+E       FrontEnd API failed with OpConversionFailure:
+E       [PyTorch Frontend] Translation for prim::ListConstruct support only constant inputs
+E       
+E       Summary:
+E       -- No conversion rule found for operations: aten::linalg_multi_dot
+E       -- Conversion is failed for: prim::ListConstruct
+
+../../ov_src_env/lib/python3.12/site-packages/openvino/frontend/frontend.py:18: OpConversionFailure
+_ test_multi_dot_two_tensors[ ie_device:CPU - precision:FP16 - dtype:torch.float64 ] _
+
+ie_device = 'CPU', precision = 'FP16', dtype = torch.float64
+
+    @pytest.mark.parametrize("dtype", [torch.float32, torch.float64])
+    def test_multi_dot_two_tensors(ie_device, precision, dtype):
+        # 🇮🇱 שני טנזורים – MatMul בודד.
+        A = make_small_tensor((3, 4), dtype=dtype, seed=1)
+        B = make_small_tensor((4, 2), dtype=dtype, seed=2)
+>       pt, ovv, _ = run_pt_and_ov([A, B], ie_device, precision, dtype=dtype)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1687: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1622: in run_pt_and_ov
+    ov_model = ov.convert_model(model, example_input=example)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert.py:105: in convert_model
+    ov_model, _ = _convert(cli_parser, params, True)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:578: in _convert
+    raise e
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:518: in _convert
+    ov_model = driver(argv, {"conversion_parameters": non_default_params})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:256: in driver
+    ov_model = moc_emit_ir(prepare_ir(argv), argv)
+                           ^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:195: in prepare_ir
+    ov_model = moc_pipeline(argv, moc_front_end)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/moc_frontend/pipeline.py:142: in moc_pipeline
+    ov_model = moc_front_end.convert(input_model)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <FrontEnd 'pytorch'>
+model = <openvino._pyopenvino.InputModel object at 0x736e37f8b3b0>
+
+    def convert(self, model: Union[Model, InputModel]) -> Model:
+>       converted_model = super().convert(model)
+                          ^^^^^^^^^^^^^^^^^^^^^^
+E       openvino._pyopenvino.OpConversionFailure: Check 'is_conversion_successful' failed at src/frontends/pytorch/src/frontend.cpp:181:
+E       FrontEnd API failed with OpConversionFailure:
+E       Model wasn't fully converted. Failed operations detailed log:
+E       -- prim::ListConstruct with a message:
+E       Exception happened during conversion of operation prim::ListConstruct with schema (no schema)
+E       Check '(c_node)' failed at src/frontends/pytorch/src/op/list_construct.cpp:25:
+E       FrontEnd API failed with OpConversionFailure:
+E       [PyTorch Frontend] Translation for prim::ListConstruct support only constant inputs
+E       
+E       Summary:
+E       -- No conversion rule found for operations: aten::linalg_multi_dot
+E       -- Conversion is failed for: prim::ListConstruct
+
+../../ov_src_env/lib/python3.12/site-packages/openvino/frontend/frontend.py:18: OpConversionFailure
+_ test_multi_dot_two_tensors[ ie_device:GPU - precision:FP32 - dtype:torch.float32 ] _
+
+ie_device = 'GPU', precision = 'FP32', dtype = torch.float32
+
+    @pytest.mark.parametrize("dtype", [torch.float32, torch.float64])
+    def test_multi_dot_two_tensors(ie_device, precision, dtype):
+        # 🇮🇱 שני טנזורים – MatMul בודד.
+        A = make_small_tensor((3, 4), dtype=dtype, seed=1)
+        B = make_small_tensor((4, 2), dtype=dtype, seed=2)
+>       pt, ovv, _ = run_pt_and_ov([A, B], ie_device, precision, dtype=dtype)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1687: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1622: in run_pt_and_ov
+    ov_model = ov.convert_model(model, example_input=example)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert.py:105: in convert_model
+    ov_model, _ = _convert(cli_parser, params, True)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:578: in _convert
+    raise e
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:518: in _convert
+    ov_model = driver(argv, {"conversion_parameters": non_default_params})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:256: in driver
+    ov_model = moc_emit_ir(prepare_ir(argv), argv)
+                           ^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:195: in prepare_ir
+    ov_model = moc_pipeline(argv, moc_front_end)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/moc_frontend/pipeline.py:142: in moc_pipeline
+    ov_model = moc_front_end.convert(input_model)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <FrontEnd 'pytorch'>
+model = <openvino._pyopenvino.InputModel object at 0x736e37fd1e50>
+
+    def convert(self, model: Union[Model, InputModel]) -> Model:
+>       converted_model = super().convert(model)
+                          ^^^^^^^^^^^^^^^^^^^^^^
+E       openvino._pyopenvino.OpConversionFailure: Check 'is_conversion_successful' failed at src/frontends/pytorch/src/frontend.cpp:181:
+E       FrontEnd API failed with OpConversionFailure:
+E       Model wasn't fully converted. Failed operations detailed log:
+E       -- prim::ListConstruct with a message:
+E       Exception happened during conversion of operation prim::ListConstruct with schema (no schema)
+E       Check '(c_node)' failed at src/frontends/pytorch/src/op/list_construct.cpp:25:
+E       FrontEnd API failed with OpConversionFailure:
+E       [PyTorch Frontend] Translation for prim::ListConstruct support only constant inputs
+E       
+E       Summary:
+E       -- No conversion rule found for operations: aten::linalg_multi_dot
+E       -- Conversion is failed for: prim::ListConstruct
+
+../../ov_src_env/lib/python3.12/site-packages/openvino/frontend/frontend.py:18: OpConversionFailure
+_ test_multi_dot_two_tensors[ ie_device:GPU - precision:FP32 - dtype:torch.float64 ] _
+
+ie_device = 'GPU', precision = 'FP32', dtype = torch.float64
+
+    @pytest.mark.parametrize("dtype", [torch.float32, torch.float64])
+    def test_multi_dot_two_tensors(ie_device, precision, dtype):
+        # 🇮🇱 שני טנזורים – MatMul בודד.
+        A = make_small_tensor((3, 4), dtype=dtype, seed=1)
+        B = make_small_tensor((4, 2), dtype=dtype, seed=2)
+>       pt, ovv, _ = run_pt_and_ov([A, B], ie_device, precision, dtype=dtype)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1687: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1622: in run_pt_and_ov
+    ov_model = ov.convert_model(model, example_input=example)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert.py:105: in convert_model
+    ov_model, _ = _convert(cli_parser, params, True)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:578: in _convert
+    raise e
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:518: in _convert
+    ov_model = driver(argv, {"conversion_parameters": non_default_params})
+/usr/lib/python3.12/multiprocessing/popen_fork.py:66: DeprecationWarning: This process (pid=37900) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  self.pid = os.fork()
+/usr/lib/python3.12/multiprocessing/popen_fork.py:66: DeprecationWarning: This process (pid=37900) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  self.pid = os.fork()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:256: in driver
+    ov_model = moc_emit_ir(prepare_ir(argv), argv)
+                           ^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:195: in prepare_ir
+    ov_model = moc_pipeline(argv, moc_front_end)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/moc_frontend/pipeline.py:142: in moc_pipeline
+    ov_model = moc_front_end.convert(input_model)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <FrontEnd 'pytorch'>
+model = <openvino._pyopenvino.InputModel object at 0x736e37fd3ad0>
+
+    def convert(self, model: Union[Model, InputModel]) -> Model:
+>       converted_model = super().convert(model)
+                          ^^^^^^^^^^^^^^^^^^^^^^
+E       openvino._pyopenvino.OpConversionFailure: Check 'is_conversion_successful' failed at src/frontends/pytorch/src/frontend.cpp:181:
+E       FrontEnd API failed with OpConversionFailure:
+E       Model wasn't fully converted. Failed operations detailed log:
+E       -- prim::ListConstruct with a message:
+E       Exception happened during conversion of operation prim::ListConstruct with schema (no schema)
+E       Check '(c_node)' failed at src/frontends/pytorch/src/op/list_construct.cpp:25:
+E       FrontEnd API failed with OpConversionFailure:
+E       [PyTorch Frontend] Translation for prim::ListConstruct support only constant inputs
+E       
+E       Summary:
+E       -- No conversion rule found for operations: aten::linalg_multi_dot
+E       -- Conversion is failed for: prim::ListConstruct
+
+../../ov_src_env/lib/python3.12/site-packages/openvino/frontend/frontend.py:18: OpConversionFailure
+_ test_multi_dot_two_tensors[ ie_device:GPU - precision:FP16 - dtype:torch.float32 ] _
+
+ie_device = 'GPU', precision = 'FP16', dtype = torch.float32
+
+    @pytest.mark.parametrize("dtype", [torch.float32, torch.float64])
+    def test_multi_dot_two_tensors(ie_device, precision, dtype):
+        # 🇮🇱 שני טנזורים – MatMul בודד.
+        A = make_small_tensor((3, 4), dtype=dtype, seed=1)
+        B = make_small_tensor((4, 2), dtype=dtype, seed=2)
+>       pt, ovv, _ = run_pt_and_ov([A, B], ie_device, precision, dtype=dtype)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1687: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1622: in run_pt_and_ov
+    ov_model = ov.convert_model(model, example_input=example)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert.py:105: in convert_model
+    ov_model, _ = _convert(cli_parser, params, True)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:578: in _convert
+    raise e
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:518: in _convert
+    ov_model = driver(argv, {"conversion_parameters": non_default_params})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:256: in driver
+    ov_model = moc_emit_ir(prepare_ir(argv), argv)
+                           ^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:195: in prepare_ir
+    ov_model = moc_pipeline(argv, moc_front_end)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/moc_frontend/pipeline.py:142: in moc_pipeline
+    ov_model = moc_front_end.convert(input_model)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <FrontEnd 'pytorch'>
+model = <openvino._pyopenvino.InputModel object at 0x736e37fd0d70>
+
+    def convert(self, model: Union[Model, InputModel]) -> Model:
+>       converted_model = super().convert(model)
+                          ^^^^^^^^^^^^^^^^^^^^^^
+E       openvino._pyopenvino.OpConversionFailure: Check 'is_conversion_successful' failed at src/frontends/pytorch/src/frontend.cpp:181:
+E       FrontEnd API failed with OpConversionFailure:
+E       Model wasn't fully converted. Failed operations detailed log:
+E       -- prim::ListConstruct with a message:
+E       Exception happened during conversion of operation prim::ListConstruct with schema (no schema)
+E       Check '(c_node)' failed at src/frontends/pytorch/src/op/list_construct.cpp:25:
+E       FrontEnd API failed with OpConversionFailure:
+E       [PyTorch Frontend] Translation for prim::ListConstruct support only constant inputs
+E       
+E       Summary:
+E       -- No conversion rule found for operations: aten::linalg_multi_dot
+E       -- Conversion is failed for: prim::ListConstruct
+
+../../ov_src_env/lib/python3.12/site-packages/openvino/frontend/frontend.py:18: OpConversionFailure
+_ test_multi_dot_two_tensors[ ie_device:GPU - precision:FP16 - dtype:torch.float64 ] _
+
+ie_device = 'GPU', precision = 'FP16', dtype = torch.float64
+
+    @pytest.mark.parametrize("dtype", [torch.float32, torch.float64])
+    def test_multi_dot_two_tensors(ie_device, precision, dtype):
+        # 🇮🇱 שני טנזורים – MatMul בודד.
+        A = make_small_tensor((3, 4), dtype=dtype, seed=1)
+        B = make_small_tensor((4, 2), dtype=dtype, seed=2)
+>       pt, ovv, _ = run_pt_and_ov([A, B], ie_device, precision, dtype=dtype)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1687: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1622: in run_pt_and_ov
+    ov_model = ov.convert_model(model, example_input=example)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert.py:105: in convert_model
+    ov_model, _ = _convert(cli_parser, params, True)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:578: in _convert
+    raise e
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:518: in _convert
+    ov_model = driver(argv, {"conversion_parameters": non_default_params})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:256: in driver
+    ov_model = moc_emit_ir(prepare_ir(argv), argv)
+                           ^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:195: in prepare_ir
+    ov_model = moc_pipeline(argv, moc_front_end)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/moc_frontend/pipeline.py:142: in moc_pipeline
+    ov_model = moc_front_end.convert(input_model)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <FrontEnd 'pytorch'>
+model = <openvino._pyopenvino.InputModel object at 0x736e37fd08f0>
+
+    def convert(self, model: Union[Model, InputModel]) -> Model:
+>       converted_model = super().convert(model)
+                          ^^^^^^^^^^^^^^^^^^^^^^
+E       openvino._pyopenvino.OpConversionFailure: Check 'is_conversion_successful' failed at src/frontends/pytorch/src/frontend.cpp:181:
+E       FrontEnd API failed with OpConversionFailure:
+E       Model wasn't fully converted. Failed operations detailed log:
+E       -- prim::ListConstruct with a message:
+E       Exception happened during conversion of operation prim::ListConstruct with schema (no schema)
+E       Check '(c_node)' failed at src/frontends/pytorch/src/op/list_construct.cpp:25:
+E       FrontEnd API failed with OpConversionFailure:
+E       [PyTorch Frontend] Translation for prim::ListConstruct support only constant inputs
+E       
+E       Summary:
+E       -- No conversion rule found for operations: aten::linalg_multi_dot
+E       -- Conversion is failed for: prim::ListConstruct
+
+../../ov_src_env/lib/python3.12/site-packages/openvino/frontend/frontend.py:18: OpConversionFailure
+_ test_multi_dot_1d_endpoints[ ie_device:CPU - precision:FP32 - dtype:torch.float32 ] _
+
+ie_device = 'CPU', precision = 'FP32', dtype = torch.float32
+
+    @pytest.mark.parametrize("dtype", [torch.float32])
+    def test_multi_dot_1d_endpoints(ie_device, precision, dtype):
+        # 🇮🇱 קצוות 1D – Unsqueeze ל-(1,N)/(N,1) ואז Squeeze חזרה ל-1D.
+        a = make_small_tensor((5,), dtype=dtype, seed=3)      # (5,)
+        B = make_small_tensor((5, 7), dtype=dtype, seed=4)    # (5,7)
+        c = make_small_tensor((7,), dtype=dtype, seed=5)      # (7,)
+>       pt, ovv, _ = run_pt_and_ov([a, B, c], ie_device, precision, dtype=dtype)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1696: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1622: in run_pt_and_ov
+    ov_model = ov.convert_model(model, example_input=example)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert.py:105: in convert_model
+    ov_model, _ = _convert(cli_parser, params, True)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:578: in _convert
+    raise e
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:518: in _convert
+    ov_model = driver(argv, {"conversion_parameters": non_default_params})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:256: in driver
+    ov_model = moc_emit_ir(prepare_ir(argv), argv)
+                           ^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:195: in prepare_ir
+    ov_model = moc_pipeline(argv, moc_front_end)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/moc_frontend/pipeline.py:142: in moc_pipeline
+    ov_model = moc_front_end.convert(input_model)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <FrontEnd 'pytorch'>
+model = <openvino._pyopenvino.InputModel object at 0x736e37fd0bf0>
+
+    def convert(self, model: Union[Model, InputModel]) -> Model:
+>       converted_model = super().convert(model)
+                          ^^^^^^^^^^^^^^^^^^^^^^
+E       openvino._pyopenvino.OpConversionFailure: Check 'is_conversion_successful' failed at src/frontends/pytorch/src/frontend.cpp:181:
+E       FrontEnd API failed with OpConversionFailure:
+E       Model wasn't fully converted. Failed operations detailed log:
+E       -- prim::ListConstruct with a message:
+E       Exception happened during conversion of operation prim::ListConstruct with schema (no schema)
+E       Check '(c_node)' failed at src/frontends/pytorch/src/op/list_construct.cpp:25:
+E       FrontEnd API failed with OpConversionFailure:
+E       [PyTorch Frontend] Translation for prim::ListConstruct support only constant inputs
+E       
+E       Summary:
+E       -- No conversion rule found for operations: aten::linalg_multi_dot
+E       -- Conversion is failed for: prim::ListConstruct
+
+../../ov_src_env/lib/python3.12/site-packages/openvino/frontend/frontend.py:18: OpConversionFailure
+_ test_multi_dot_1d_endpoints[ ie_device:CPU - precision:FP16 - dtype:torch.float32 ] _
+
+ie_device = 'CPU', precision = 'FP16', dtype = torch.float32
+
+    @pytest.mark.parametrize("dtype", [torch.float32])
+    def test_multi_dot_1d_endpoints(ie_device, precision, dtype):
+        # 🇮🇱 קצוות 1D – Unsqueeze ל-(1,N)/(N,1) ואז Squeeze חזרה ל-1D.
+        a = make_small_tensor((5,), dtype=dtype, seed=3)      # (5,)
+        B = make_small_tensor((5, 7), dtype=dtype, seed=4)    # (5,7)
+        c = make_small_tensor((7,), dtype=dtype, seed=5)      # (7,)
+>       pt, ovv, _ = run_pt_and_ov([a, B, c], ie_device, precision, dtype=dtype)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1696: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1622: in run_pt_and_ov
+    ov_model = ov.convert_model(model, example_input=example)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert.py:105: in convert_model
+    ov_model, _ = _convert(cli_parser, params, True)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:578: in _convert
+    raise e
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:518: in _convert
+    ov_model = driver(argv, {"conversion_parameters": non_default_params})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:256: in driver
+    ov_model = moc_emit_ir(prepare_ir(argv), argv)
+                           ^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:195: in prepare_ir
+    ov_model = moc_pipeline(argv, moc_front_end)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/moc_frontend/pipeline.py:142: in moc_pipeline
+    ov_model = moc_front_end.convert(input_model)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <FrontEnd 'pytorch'>
+model = <openvino._pyopenvino.InputModel object at 0x736e37fd2810>
+
+    def convert(self, model: Union[Model, InputModel]) -> Model:
+>       converted_model = super().convert(model)
+                          ^^^^^^^^^^^^^^^^^^^^^^
+E       openvino._pyopenvino.OpConversionFailure: Check 'is_conversion_successful' failed at src/frontends/pytorch/src/frontend.cpp:181:
+E       FrontEnd API failed with OpConversionFailure:
+E       Model wasn't fully converted. Failed operations detailed log:
+E       -- prim::ListConstruct with a message:
+E       Exception happened during conversion of operation prim::ListConstruct with schema (no schema)
+E       Check '(c_node)' failed at src/frontends/pytorch/src/op/list_construct.cpp:25:
+E       FrontEnd API failed with OpConversionFailure:
+E       [PyTorch Frontend] Translation for prim::ListConstruct support only constant inputs
+E       
+E       Summary:
+E       -- No conversion rule found for operations: aten::linalg_multi_dot
+E       -- Conversion is failed for: prim::ListConstruct
+
+../../ov_src_env/lib/python3.12/site-packages/openvino/frontend/frontend.py:18: OpConversionFailure
+_ test_multi_dot_1d_endpoints[ ie_device:GPU - precision:FP32 - dtype:torch.float32 ] _
+
+ie_device = 'GPU', precision = 'FP32', dtype = torch.float32
+
+    @pytest.mark.parametrize("dtype", [torch.float32])
+    def test_multi_dot_1d_endpoints(ie_device, precision, dtype):
+        # 🇮🇱 קצוות 1D – Unsqueeze ל-(1,N)/(N,1) ואז Squeeze חזרה ל-1D.
+        a = make_small_tensor((5,), dtype=dtype, seed=3)      # (5,)
+        B = make_small_tensor((5, 7), dtype=dtype, seed=4)    # (5,7)
+        c = make_small_tensor((7,), dtype=dtype, seed=5)      # (7,)
+>       pt, ovv, _ = run_pt_and_ov([a, B, c], ie_device, precision, dtype=dtype)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1696: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1622: in run_pt_and_ov
+    ov_model = ov.convert_model(model, example_input=example)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert.py:105: in convert_model
+    ov_model, _ = _convert(cli_parser, params, True)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:578: in _convert
+    raise e
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:518: in _convert
+    ov_model = driver(argv, {"conversion_parameters": non_default_params})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:256: in driver
+    ov_model = moc_emit_ir(prepare_ir(argv), argv)
+                           ^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:195: in prepare_ir
+    ov_model = moc_pipeline(argv, moc_front_end)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/moc_frontend/pipeline.py:142: in moc_pipeline
+    ov_model = moc_front_end.convert(input_model)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <FrontEnd 'pytorch'>
+model = <openvino._pyopenvino.InputModel object at 0x736e37fd09b0>
+
+    def convert(self, model: Union[Model, InputModel]) -> Model:
+>       converted_model = super().convert(model)
+                          ^^^^^^^^^^^^^^^^^^^^^^
+E       openvino._pyopenvino.OpConversionFailure: Check 'is_conversion_successful' failed at src/frontends/pytorch/src/frontend.cpp:181:
+E       FrontEnd API failed with OpConversionFailure:
+E       Model wasn't fully converted. Failed operations detailed log:
+E       -- prim::ListConstruct with a message:
+E       Exception happened during conversion of operation prim::ListConstruct with schema (no schema)
+E       Check '(c_node)' failed at src/frontends/pytorch/src/op/list_construct.cpp:25:
+E       FrontEnd API failed with OpConversionFailure:
+E       [PyTorch Frontend] Translation for prim::ListConstruct support only constant inputs
+E       
+E       Summary:
+E       -- No conversion rule found for operations: aten::linalg_multi_dot
+E       -- Conversion is failed for: prim::ListConstruct
+
+../../ov_src_env/lib/python3.12/site-packages/openvino/frontend/frontend.py:18: OpConversionFailure
+_ test_multi_dot_1d_endpoints[ ie_device:GPU - precision:FP16 - dtype:torch.float32 ] _
+
+ie_device = 'GPU', precision = 'FP16', dtype = torch.float32
+
+    @pytest.mark.parametrize("dtype", [torch.float32])
+    def test_multi_dot_1d_endpoints(ie_device, precision, dtype):
+        # 🇮🇱 קצוות 1D – Unsqueeze ל-(1,N)/(N,1) ואז Squeeze חזרה ל-1D.
+        a = make_small_tensor((5,), dtype=dtype, seed=3)      # (5,)
+        B = make_small_tensor((5, 7), dtype=dtype, seed=4)    # (5,7)
+        c = make_small_tensor((7,), dtype=dtype, seed=5)      # (7,)
+>       pt, ovv, _ = run_pt_and_ov([a, B, c], ie_device, precision, dtype=dtype)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1696: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1622: in run_pt_and_ov
+    ov_model = ov.convert_model(model, example_input=example)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert.py:105: in convert_model
+    ov_model, _ = _convert(cli_parser, params, True)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:578: in _convert
+    raise e
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:518: in _convert
+    ov_model = driver(argv, {"conversion_parameters": non_default_params})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:256: in driver
+    ov_model = moc_emit_ir(prepare_ir(argv), argv)
+                           ^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:195: in prepare_ir
+    ov_model = moc_pipeline(argv, moc_front_end)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/moc_frontend/pipeline.py:142: in moc_pipeline
+    ov_model = moc_front_end.convert(input_model)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <FrontEnd 'pytorch'>
+model = <openvino._pyopenvino.InputModel object at 0x736e37fd2810>
+
+    def convert(self, model: Union[Model, InputModel]) -> Model:
+>       converted_model = super().convert(model)
+                          ^^^^^^^^^^^^^^^^^^^^^^
+E       openvino._pyopenvino.OpConversionFailure: Check 'is_conversion_successful' failed at src/frontends/pytorch/src/frontend.cpp:181:
+E       FrontEnd API failed with OpConversionFailure:
+E       Model wasn't fully converted. Failed operations detailed log:
+E       -- prim::ListConstruct with a message:
+E       Exception happened during conversion of operation prim::ListConstruct with schema (no schema)
+E       Check '(c_node)' failed at src/frontends/pytorch/src/op/list_construct.cpp:25:
+E       FrontEnd API failed with OpConversionFailure:
+E       [PyTorch Frontend] Translation for prim::ListConstruct support only constant inputs
+E       
+E       Summary:
+E       -- No conversion rule found for operations: aten::linalg_multi_dot
+E       -- Conversion is failed for: prim::ListConstruct
+
+../../ov_src_env/lib/python3.12/site-packages/openvino/frontend/frontend.py:18: OpConversionFailure
+_ test_multi_dot_three_tensors_heuristic_picks_AB_then_C[ ie_device:CPU - precision:FP32 - dtype:torch.float32 ] _
+
+ie_device = 'CPU', precision = 'FP32', dtype = torch.float32
+
+    @pytest.mark.parametrize("dtype", [torch.float32])
+    def test_multi_dot_three_tensors_heuristic_picks_AB_then_C(ie_device, precision, dtype):
+        # 🇮🇱 שלוש מטריצות – מקרה שבו זול יותר לחשב (A@B)@C מאשר A@(B@C).
+        # A: (8x50), B: (50x6), C: (6x40)
+        A = make_small_tensor((8, 50), dtype=dtype, seed=10)
+        B = make_small_tensor((50, 6), dtype=dtype, seed=11)
+        C = make_small_tensor((6, 40), dtype=dtype, seed=12)
+>       pt, ovv, ov_model = run_pt_and_ov([A, B, C], ie_device, precision, dtype=dtype)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1707: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1622: in run_pt_and_ov
+    ov_model = ov.convert_model(model, example_input=example)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert.py:105: in convert_model
+    ov_model, _ = _convert(cli_parser, params, True)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:578: in _convert
+    raise e
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:518: in _convert
+    ov_model = driver(argv, {"conversion_parameters": non_default_params})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:256: in driver
+/usr/lib/python3.12/multiprocessing/popen_fork.py:66: DeprecationWarning: This process (pid=37900) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  self.pid = os.fork()
+    ov_model = moc_emit_ir(prepare_ir(argv), argv)
+                           ^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:195: in prepare_ir
+    ov_model = moc_pipeline(argv, moc_front_end)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/moc_frontend/pipeline.py:142: in moc_pipeline
+    ov_model = moc_front_end.convert(input_model)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <FrontEnd 'pytorch'>
+model = <openvino._pyopenvino.InputModel object at 0x736e37f88ad0>
+
+    def convert(self, model: Union[Model, InputModel]) -> Model:
+>       converted_model = super().convert(model)
+                          ^^^^^^^^^^^^^^^^^^^^^^
+E       openvino._pyopenvino.OpConversionFailure: Check 'is_conversion_successful' failed at src/frontends/pytorch/src/frontend.cpp:181:
+E       FrontEnd API failed with OpConversionFailure:
+E       Model wasn't fully converted. Failed operations detailed log:
+E       -- prim::ListConstruct with a message:
+E       Exception happened during conversion of operation prim::ListConstruct with schema (no schema)
+E       Check '(c_node)' failed at src/frontends/pytorch/src/op/list_construct.cpp:25:
+E       FrontEnd API failed with OpConversionFailure:
+E       [PyTorch Frontend] Translation for prim::ListConstruct support only constant inputs
+E       
+E       Summary:
+E       -- No conversion rule found for operations: aten::linalg_multi_dot
+E       -- Conversion is failed for: prim::ListConstruct
+
+../../ov_src_env/lib/python3.12/site-packages/openvino/frontend/frontend.py:18: OpConversionFailure
+_ test_multi_dot_three_tensors_heuristic_picks_AB_then_C[ ie_device:CPU - precision:FP16 - dtype:torch.float32 ] _
+
+ie_device = 'CPU', precision = 'FP16', dtype = torch.float32
+
+    @pytest.mark.parametrize("dtype", [torch.float32])
+    def test_multi_dot_three_tensors_heuristic_picks_AB_then_C(ie_device, precision, dtype):
+        # 🇮🇱 שלוש מטריצות – מקרה שבו זול יותר לחשב (A@B)@C מאשר A@(B@C).
+        # A: (8x50), B: (50x6), C: (6x40)
+        A = make_small_tensor((8, 50), dtype=dtype, seed=10)
+        B = make_small_tensor((50, 6), dtype=dtype, seed=11)
+        C = make_small_tensor((6, 40), dtype=dtype, seed=12)
+>       pt, ovv, ov_model = run_pt_and_ov([A, B, C], ie_device, precision, dtype=dtype)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1707: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1622: in run_pt_and_ov
+    ov_model = ov.convert_model(model, example_input=example)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert.py:105: in convert_model
+    ov_model, _ = _convert(cli_parser, params, True)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:578: in _convert
+    raise e
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:518: in _convert
+    ov_model = driver(argv, {"conversion_parameters": non_default_params})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:256: in driver
+    ov_model = moc_emit_ir(prepare_ir(argv), argv)
+                           ^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:195: in prepare_ir
+    ov_model = moc_pipeline(argv, moc_front_end)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/moc_frontend/pipeline.py:142: in moc_pipeline
+    ov_model = moc_front_end.convert(input_model)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <FrontEnd 'pytorch'>
+model = <openvino._pyopenvino.InputModel object at 0x736e37fad3d0>
+
+    def convert(self, model: Union[Model, InputModel]) -> Model:
+>       converted_model = super().convert(model)
+                          ^^^^^^^^^^^^^^^^^^^^^^
+E       openvino._pyopenvino.OpConversionFailure: Check 'is_conversion_successful' failed at src/frontends/pytorch/src/frontend.cpp:181:
+E       FrontEnd API failed with OpConversionFailure:
+E       Model wasn't fully converted. Failed operations detailed log:
+E       -- prim::ListConstruct with a message:
+E       Exception happened during conversion of operation prim::ListConstruct with schema (no schema)
+E       Check '(c_node)' failed at src/frontends/pytorch/src/op/list_construct.cpp:25:
+E       FrontEnd API failed with OpConversionFailure:
+E       [PyTorch Frontend] Translation for prim::ListConstruct support only constant inputs
+E       
+E       Summary:
+E       -- No conversion rule found for operations: aten::linalg_multi_dot
+E       -- Conversion is failed for: prim::ListConstruct
+
+../../ov_src_env/lib/python3.12/site-packages/openvino/frontend/frontend.py:18: OpConversionFailure
+_ test_multi_dot_three_tensors_heuristic_picks_AB_then_C[ ie_device:GPU - precision:FP32 - dtype:torch.float32 ] _
+
+ie_device = 'GPU', precision = 'FP32', dtype = torch.float32
+
+    @pytest.mark.parametrize("dtype", [torch.float32])
+    def test_multi_dot_three_tensors_heuristic_picks_AB_then_C(ie_device, precision, dtype):
+        # 🇮🇱 שלוש מטריצות – מקרה שבו זול יותר לחשב (A@B)@C מאשר A@(B@C).
+        # A: (8x50), B: (50x6), C: (6x40)
+        A = make_small_tensor((8, 50), dtype=dtype, seed=10)
+        B = make_small_tensor((50, 6), dtype=dtype, seed=11)
+        C = make_small_tensor((6, 40), dtype=dtype, seed=12)
+>       pt, ovv, ov_model = run_pt_and_ov([A, B, C], ie_device, precision, dtype=dtype)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1707: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1622: in run_pt_and_ov
+    ov_model = ov.convert_model(model, example_input=example)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert.py:105: in convert_model
+    ov_model, _ = _convert(cli_parser, params, True)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:578: in _convert
+    raise e
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:518: in _convert
+    ov_model = driver(argv, {"conversion_parameters": non_default_params})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:256: in driver
+    ov_model = moc_emit_ir(prepare_ir(argv), argv)
+                           ^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:195: in prepare_ir
+    ov_model = moc_pipeline(argv, moc_front_end)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/moc_frontend/pipeline.py:142: in moc_pipeline
+    ov_model = moc_front_end.convert(input_model)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <FrontEnd 'pytorch'>
+model = <openvino._pyopenvino.InputModel object at 0x736e37faec90>
+
+    def convert(self, model: Union[Model, InputModel]) -> Model:
+>       converted_model = super().convert(model)
+                          ^^^^^^^^^^^^^^^^^^^^^^
+E       openvino._pyopenvino.OpConversionFailure: Check 'is_conversion_successful' failed at src/frontends/pytorch/src/frontend.cpp:181:
+E       FrontEnd API failed with OpConversionFailure:
+E       Model wasn't fully converted. Failed operations detailed log:
+E       -- prim::ListConstruct with a message:
+E       Exception happened during conversion of operation prim::ListConstruct with schema (no schema)
+E       Check '(c_node)' failed at src/frontends/pytorch/src/op/list_construct.cpp:25:
+E       FrontEnd API failed with OpConversionFailure:
+E       [PyTorch Frontend] Translation for prim::ListConstruct support only constant inputs
+E       
+E       Summary:
+E       -- No conversion rule found for operations: aten::linalg_multi_dot
+E       -- Conversion is failed for: prim::ListConstruct
+
+../../ov_src_env/lib/python3.12/site-packages/openvino/frontend/frontend.py:18: OpConversionFailure
+_ test_multi_dot_three_tensors_heuristic_picks_AB_then_C[ ie_device:GPU - precision:FP16 - dtype:torch.float32 ] _
+
+ie_device = 'GPU', precision = 'FP16', dtype = torch.float32
+
+    @pytest.mark.parametrize("dtype", [torch.float32])
+    def test_multi_dot_three_tensors_heuristic_picks_AB_then_C(ie_device, precision, dtype):
+        # 🇮🇱 שלוש מטריצות – מקרה שבו זול יותר לחשב (A@B)@C מאשר A@(B@C).
+        # A: (8x50), B: (50x6), C: (6x40)
+        A = make_small_tensor((8, 50), dtype=dtype, seed=10)
+        B = make_small_tensor((50, 6), dtype=dtype, seed=11)
+        C = make_small_tensor((6, 40), dtype=dtype, seed=12)
+>       pt, ovv, ov_model = run_pt_and_ov([A, B, C], ie_device, precision, dtype=dtype)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1707: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1622: in run_pt_and_ov
+    ov_model = ov.convert_model(model, example_input=example)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert.py:105: in convert_model
+    ov_model, _ = _convert(cli_parser, params, True)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:578: in _convert
+    raise e
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:518: in _convert
+    ov_model = driver(argv, {"conversion_parameters": non_default_params})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:256: in driver
+    ov_model = moc_emit_ir(prepare_ir(argv), argv)
+                           ^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:195: in prepare_ir
+    ov_model = moc_pipeline(argv, moc_front_end)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/moc_frontend/pipeline.py:142: in moc_pipeline
+    ov_model = moc_front_end.convert(input_model)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <FrontEnd 'pytorch'>
+model = <openvino._pyopenvino.InputModel object at 0x736e37fd07d0>
+
+    def convert(self, model: Union[Model, InputModel]) -> Model:
+>       converted_model = super().convert(model)
+                          ^^^^^^^^^^^^^^^^^^^^^^
+E       openvino._pyopenvino.OpConversionFailure: Check 'is_conversion_successful' failed at src/frontends/pytorch/src/frontend.cpp:181:
+E       FrontEnd API failed with OpConversionFailure:
+E       Model wasn't fully converted. Failed operations detailed log:
+E       -- prim::ListConstruct with a message:
+E       Exception happened during conversion of operation prim::ListConstruct with schema (no schema)
+E       Check '(c_node)' failed at src/frontends/pytorch/src/op/list_construct.cpp:25:
+E       FrontEnd API failed with OpConversionFailure:
+E       [PyTorch Frontend] Translation for prim::ListConstruct support only constant inputs
+E       
+E       Summary:
+E       -- No conversion rule found for operations: aten::linalg_multi_dot
+E       -- Conversion is failed for: prim::ListConstruct
+
+../../ov_src_env/lib/python3.12/site-packages/openvino/frontend/frontend.py:18: OpConversionFailure
+_ test_multi_dot_three_tensors_heuristic_picks_A_then_BC[ ie_device:CPU - precision:FP32 - dtype:torch.float32 ] _
+
+ie_device = 'CPU', precision = 'FP32', dtype = torch.float32
+
+    @pytest.mark.parametrize("dtype", [torch.float32])
+    def test_multi_dot_three_tensors_heuristic_picks_A_then_BC(ie_device, precision, dtype):
+        # 🇮🇱 שלוש מטריצות – מקרה שבו זול יותר A@(B@C) מאשר (A@B)@C.
+        # A: (40x6), B: (6x50), C: (50x8)
+        A = make_small_tensor((40, 6), dtype=dtype, seed=20)
+        B = make_small_tensor((6, 50), dtype=dtype, seed=21)
+        C = make_small_tensor((50, 8), dtype=dtype, seed=22)
+>       pt, ovv, ov_model = run_pt_and_ov([A, B, C], ie_device, precision, dtype=dtype)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1723: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1622: in run_pt_and_ov
+    ov_model = ov.convert_model(model, example_input=example)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert.py:105: in convert_model
+    ov_model, _ = _convert(cli_parser, params, True)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:578: in _convert
+    raise e
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:518: in _convert
+    ov_model = driver(argv, {"conversion_parameters": non_default_params})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:256: in driver
+    ov_model = moc_emit_ir(prepare_ir(argv), argv)
+                           ^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:195: in prepare_ir
+    ov_model = moc_pipeline(argv, moc_front_end)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/moc_frontend/pipeline.py:142: in moc_pipeline
+    ov_model = moc_front_end.convert(input_model)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <FrontEnd 'pytorch'>
+model = <openvino._pyopenvino.InputModel object at 0x736e37fac4d0>
+
+    def convert(self, model: Union[Model, InputModel]) -> Model:
+>       converted_model = super().convert(model)
+                          ^^^^^^^^^^^^^^^^^^^^^^
+E       openvino._pyopenvino.OpConversionFailure: Check 'is_conversion_successful' failed at src/frontends/pytorch/src/frontend.cpp:181:
+E       FrontEnd API failed with OpConversionFailure:
+E       Model wasn't fully converted. Failed operations detailed log:
+E       -- prim::ListConstruct with a message:
+E       Exception happened during conversion of operation prim::ListConstruct with schema (no schema)
+E       Check '(c_node)' failed at src/frontends/pytorch/src/op/list_construct.cpp:25:
+E       FrontEnd API failed with OpConversionFailure:
+E       [PyTorch Frontend] Translation for prim::ListConstruct support only constant inputs
+E       
+E       Summary:
+E       -- No conversion rule found for operations: aten::linalg_multi_dot
+E       -- Conversion is failed for: prim::ListConstruct
+
+../../ov_src_env/lib/python3.12/site-packages/openvino/frontend/frontend.py:18: OpConversionFailure
+_ test_multi_dot_three_tensors_heuristic_picks_A_then_BC[ ie_device:CPU - precision:FP16 - dtype:torch.float32 ] _
+
+ie_device = 'CPU', precision = 'FP16', dtype = torch.float32
+
+    @pytest.mark.parametrize("dtype", [torch.float32])
+    def test_multi_dot_three_tensors_heuristic_picks_A_then_BC(ie_device, precision, dtype):
+        # 🇮🇱 שלוש מטריצות – מקרה שבו זול יותר A@(B@C) מאשר (A@B)@C.
+        # A: (40x6), B: (6x50), C: (50x8)
+        A = make_small_tensor((40, 6), dtype=dtype, seed=20)
+        B = make_small_tensor((6, 50), dtype=dtype, seed=21)
+        C = make_small_tensor((50, 8), dtype=dtype, seed=22)
+>       pt, ovv, ov_model = run_pt_and_ov([A, B, C], ie_device, precision, dtype=dtype)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1723: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1622: in run_pt_and_ov
+    ov_model = ov.convert_model(model, example_input=example)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert.py:105: in convert_model
+    ov_model, _ = _convert(cli_parser, params, True)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:578: in _convert
+    raise e
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:518: in _convert
+    ov_model = driver(argv, {"conversion_parameters": non_default_params})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:256: in driver
+    ov_model = moc_emit_ir(prepare_ir(argv), argv)
+                           ^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:195: in prepare_ir
+    ov_model = moc_pipeline(argv, moc_front_end)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/moc_frontend/pipeline.py:142: in moc_pipeline
+    ov_model = moc_front_end.convert(input_model)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <FrontEnd 'pytorch'>
+model = <openvino._pyopenvino.InputModel object at 0x736e37faf530>
+
+    def convert(self, model: Union[Model, InputModel]) -> Model:
+>       converted_model = super().convert(model)
+                          ^^^^^^^^^^^^^^^^^^^^^^
+E       openvino._pyopenvino.OpConversionFailure: Check 'is_conversion_successful' failed at src/frontends/pytorch/src/frontend.cpp:181:
+E       FrontEnd API failed with OpConversionFailure:
+E       Model wasn't fully converted. Failed operations detailed log:
+E       -- prim::ListConstruct with a message:
+E       Exception happened during conversion of operation prim::ListConstruct with schema (no schema)
+E       Check '(c_node)' failed at src/frontends/pytorch/src/op/list_construct.cpp:25:
+E       FrontEnd API failed with OpConversionFailure:
+E       [PyTorch Frontend] Translation for prim::ListConstruct support only constant inputs
+E       
+E       Summary:
+E       -- No conversion rule found for operations: aten::linalg_multi_dot
+E       -- Conversion is failed for: prim::ListConstruct
+
+../../ov_src_env/lib/python3.12/site-packages/openvino/frontend/frontend.py:18: OpConversionFailure
+_ test_multi_dot_three_tensors_heuristic_picks_A_then_BC[ ie_device:GPU - precision:FP32 - dtype:torch.float32 ] _
+
+ie_device = 'GPU', precision = 'FP32', dtype = torch.float32
+
+    @pytest.mark.parametrize("dtype", [torch.float32])
+    def test_multi_dot_three_tensors_heuristic_picks_A_then_BC(ie_device, precision, dtype):
+        # 🇮🇱 שלוש מטריצות – מקרה שבו זול יותר A@(B@C) מאשר (A@B)@C.
+        # A: (40x6), B: (6x50), C: (50x8)
+        A = make_small_tensor((40, 6), dtype=dtype, seed=20)
+        B = make_small_tensor((6, 50), dtype=dtype, seed=21)
+        C = make_small_tensor((50, 8), dtype=dtype, seed=22)
+>       pt, ovv, ov_model = run_pt_and_ov([A, B, C], ie_device, precision, dtype=dtype)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1723: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1622: in run_pt_and_ov
+    ov_model = ov.convert_model(model, example_input=example)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert.py:105: in convert_model
+    ov_model, _ = _convert(cli_parser, params, True)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:578: in _convert
+    raise e
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:518: in _convert
+    ov_model = driver(argv, {"conversion_parameters": non_default_params})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:256: in driver
+    ov_model = moc_emit_ir(prepare_ir(argv), argv)
+                           ^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:195: in prepare_ir
+    ov_model = moc_pipeline(argv, moc_front_end)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/moc_frontend/pipeline.py:142: in moc_pipeline
+    ov_model = moc_front_end.convert(input_model)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <FrontEnd 'pytorch'>
+model = <openvino._pyopenvino.InputModel object at 0x736e37fae270>
+
+    def convert(self, model: Union[Model, InputModel]) -> Model:
+>       converted_model = super().convert(model)
+                          ^^^^^^^^^^^^^^^^^^^^^^
+E       openvino._pyopenvino.OpConversionFailure: Check 'is_conversion_successful' failed at src/frontends/pytorch/src/frontend.cpp:181:
+E       FrontEnd API failed with OpConversionFailure:
+E       Model wasn't fully converted. Failed operations detailed log:
+E       -- prim::ListConstruct with a message:
+E       Exception happened during conversion of operation prim::ListConstruct with schema (no schema)
+E       Check '(c_node)' failed at src/frontends/pytorch/src/op/list_construct.cpp:25:
+E       FrontEnd API failed with OpConversionFailure:
+E       [PyTorch Frontend] Translation for prim::ListConstruct support only constant inputs
+E       
+E       Summary:
+E       -- No conversion rule found for operations: aten::linalg_multi_dot
+E       -- Conversion is failed for: prim::ListConstruct
+
+../../ov_src_env/lib/python3.12/site-packages/openvino/frontend/frontend.py:18: OpConversionFailure
+_ test_multi_dot_three_tensors_heuristic_picks_A_then_BC[ ie_device:GPU - precision:FP16 - dtype:torch.float32 ] _
+
+ie_device = 'GPU', precision = 'FP16', dtype = torch.float32
+
+    @pytest.mark.parametrize("dtype", [torch.float32])
+    def test_multi_dot_three_tensors_heuristic_picks_A_then_BC(ie_device, precision, dtype):
+        # 🇮🇱 שלוש מטריצות – מקרה שבו זול יותר A@(B@C) מאשר (A@B)@C.
+        # A: (40x6), B: (6x50), C: (50x8)
+        A = make_small_tensor((40, 6), dtype=dtype, seed=20)
+        B = make_small_tensor((6, 50), dtype=dtype, seed=21)
+        C = make_small_tensor((50, 8), dtype=dtype, seed=22)
+>       pt, ovv, ov_model = run_pt_and_ov([A, B, C], ie_device, precision, dtype=dtype)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1723: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1622: in run_pt_and_ov
+    ov_model = ov.convert_model(model, example_input=example)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert.py:105: in convert_model
+    ov_model, _ = _convert(cli_parser, params, True)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:578: in _convert
+    raise e
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:518: in _convert
+    ov_model = driver(argv, {"conversion_parameters": non_default_params})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:256: in driver
+    ov_model = moc_emit_ir(prepare_ir(argv), argv)
+                           ^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:195: in prepare_ir
+    ov_model = moc_pipeline(argv, moc_front_end)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/moc_frontend/pipeline.py:142: in moc_pipeline
+    ov_model = moc_front_end.convert(input_model)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <FrontEnd 'pytorch'>
+model = <openvino._pyopenvino.InputModel object at 0x736e37fad790>
+
+    def convert(self, model: Union[Model, InputModel]) -> Model:
+>       converted_model = super().convert(model)
+                          ^^^^^^^^^^^^^^^^^^^^^^
+E       openvino._pyopenvino.OpConversionFailure: Check 'is_conversion_successful' failed at src/frontends/pytorch/src/frontend.cpp:181:
+E       FrontEnd API failed with OpConversionFailure:
+E       Model wasn't fully converted. Failed operations detailed log:
+E       -- prim::ListConstruct with a message:
+E       Exception happened during conversion of operation prim::ListConstruct with schema (no schema)
+E       Check '(c_node)' failed at src/frontends/pytorch/src/op/list_construct.cpp:25:
+E       FrontEnd API failed with OpConversionFailure:
+E       [PyTorch Frontend] Translation for prim::ListConstruct support only constant inputs
+E       
+E       Summary:
+E       -- No conversion rule found for operations: aten::linalg_multi_dot
+E       -- Conversion is failed for: prim::ListConstruct
+
+../../ov_src_env/lib/python3.12/site-packages/openvino/frontend/frontend.py:18: OpConversionFailure
+_ test_multi_dot_four_tensors_dp_optimal_split[ ie_device:CPU - precision:FP32 - dtype:torch.float32 ] _
+
+ie_device = 'CPU', precision = 'FP32', dtype = torch.float32
+
+    @pytest.mark.parametrize("dtype", [torch.float32])
+    def test_multi_dot_four_tensors_dp_optimal_split(ie_device, precision, dtype):
+        # 🇮🇱 ארבע מטריצות – בדיקת DP עם פיצול אופטימלי ((A@B)@(C@D)).
+        A = make_small_tensor((5, 60), dtype=dtype, seed=30)
+        B = make_small_tensor((60, 3), dtype=dtype, seed=31)
+        C = make_small_tensor((3, 70), dtype=dtype, seed=32)
+        D = make_small_tensor((70, 4), dtype=dtype, seed=33)
+>       pt, ovv, ov_model = run_pt_and_ov([A, B, C, D], ie_device, precision, dtype=dtype)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1738: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1622: in run_pt_and_ov
+    ov_model = ov.convert_model(model, example_input=example)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert.py:105: in convert_model
+    ov_model, _ = _convert(cli_parser, params, True)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:578: in _convert
+    raise e
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:518: in _convert
+    ov_model = driver(argv, {"conversion_parameters": non_default_params})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:256: in driver
+    ov_model = moc_emit_ir(prepare_ir(argv), argv)
+                           ^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:195: in prepare_ir
+    ov_model = moc_pipeline(argv, moc_front_end)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/moc_frontend/pipeline.py:142: in moc_pipeline
+    ov_model = moc_front_end.convert(input_model)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <FrontEnd 'pytorch'>
+model = <openvino._pyopenvino.InputModel object at 0x736e37fae3f0>
+
+    def convert(self, model: Union[Model, InputModel]) -> Model:
+>       converted_model = super().convert(model)
+                          ^^^^^^^^^^^^^^^^^^^^^^
+E       openvino._pyopenvino.OpConversionFailure: Check 'is_conversion_successful' failed at src/frontends/pytorch/src/frontend.cpp:181:
+E       FrontEnd API failed with OpConversionFailure:
+E       Model wasn't fully converted. Failed operations detailed log:
+E       -- prim::ListConstruct with a message:
+E       Exception happened during conversion of operation prim::ListConstruct with schema (no schema)
+E       Check '(c_node)' failed at src/frontends/pytorch/src/op/list_construct.cpp:25:
+E       FrontEnd API failed with OpConversionFailure:
+E       [PyTorch Frontend] Translation for prim::ListConstruct support only constant inputs
+E       
+E       Summary:
+E       -- No conversion rule found for operations: aten::linalg_multi_dot
+E       -- Conversion is failed for: prim::ListConstruct
+
+../../ov_src_env/lib/python3.12/site-packages/openvino/frontend/frontend.py:18: OpConversionFailure
+_ test_multi_dot_four_tensors_dp_optimal_split[ ie_device:CPU - precision:FP16 - dtype:torch.float32 ] _
+
+ie_device = 'CPU', precision = 'FP16', dtype = torch.float32
+
+    @pytest.mark.parametrize("dtype", [torch.float32])
+    def test_multi_dot_four_tensors_dp_optimal_split(ie_device, precision, dtype):
+        # 🇮🇱 ארבע מטריצות – בדיקת DP עם פיצול אופטימלי ((A@B)@(C@D)).
+        A = make_small_tensor((5, 60), dtype=dtype, seed=30)
+        B = make_small_tensor((60, 3), dtype=dtype, seed=31)
+        C = make_small_tensor((3, 70), dtype=dtype, seed=32)
+        D = make_small_tensor((70, 4), dtype=dtype, seed=33)
+>       pt, ovv, ov_model = run_pt_and_ov([A, B, C, D], ie_device, precision, dtype=dtype)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1738: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1622: in run_pt_and_ov
+    ov_model = ov.convert_model(model, example_input=example)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert.py:105: in convert_model
+    ov_model, _ = _convert(cli_parser, params, True)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:578: in _convert
+    raise e
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:518: in _convert
+    ov_model = driver(argv, {"conversion_parameters": non_default_params})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:256: in driver
+    ov_model = moc_emit_ir(prepare_ir(argv), argv)
+                           ^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:195: in prepare_ir
+    ov_model = moc_pipeline(argv, moc_front_end)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/moc_frontend/pipeline.py:142: in moc_pipeline
+    ov_model = moc_front_end.convert(input_model)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <FrontEnd 'pytorch'>
+model = <openvino._pyopenvino.InputModel object at 0x736e34c563f0>
+
+    def convert(self, model: Union[Model, InputModel]) -> Model:
+>       converted_model = super().convert(model)
+                          ^^^^^^^^^^^^^^^^^^^^^^
+E       openvino._pyopenvino.OpConversionFailure: Check 'is_conversion_successful' failed at src/frontends/pytorch/src/frontend.cpp:181:
+E       FrontEnd API failed with OpConversionFailure:
+E       Model wasn't fully converted. Failed operations detailed log:
+E       -- prim::ListConstruct with a message:
+E       Exception happened during conversion of operation prim::ListConstruct with schema (no schema)
+E       Check '(c_node)' failed at src/frontends/pytorch/src/op/list_construct.cpp:25:
+E       FrontEnd API failed with OpConversionFailure:
+E       [PyTorch Frontend] Translation for prim::ListConstruct support only constant inputs
+E       
+E       Summary:
+E       -- No conversion rule found for operations: aten::linalg_multi_dot
+E       -- Conversion is failed for: prim::ListConstruct
+
+../../ov_src_env/lib/python3.12/site-packages/openvino/frontend/frontend.py:18: OpConversionFailure
+_ test_multi_dot_four_tensors_dp_optimal_split[ ie_device:GPU - precision:FP32 - dtype:torch.float32 ] _
+
+ie_device = 'GPU', precision = 'FP32', dtype = torch.float32
+
+    @pytest.mark.parametrize("dtype", [torch.float32])
+    def test_multi_dot_four_tensors_dp_optimal_split(ie_device, precision, dtype):
+        # 🇮🇱 ארבע מטריצות – בדיקת DP עם פיצול אופטימלי ((A@B)@(C@D)).
+        A = make_small_tensor((5, 60), dtype=dtype, seed=30)
+        B = make_small_tensor((60, 3), dtype=dtype, seed=31)
+        C = make_small_tensor((3, 70), dtype=dtype, seed=32)
+        D = make_small_tensor((70, 4), dtype=dtype, seed=33)
+>       pt, ovv, ov_model = run_pt_and_ov([A, B, C, D], ie_device, precision, dtype=dtype)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1738: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1622: in run_pt_and_ov
+    ov_model = ov.convert_model(model, example_input=example)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert.py:105: in convert_model
+    ov_model, _ = _convert(cli_parser, params, True)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:578: in _convert
+    raise e
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:518: in _convert
+    ov_model = driver(argv, {"conversion_parameters": non_default_params})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:256: in driver
+    ov_model = moc_emit_ir(prepare_ir(argv), argv)
+                           ^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:195: in prepare_ir
+    ov_model = moc_pipeline(argv, moc_front_end)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/moc_frontend/pipeline.py:142: in moc_pipeline
+    ov_model = moc_front_end.convert(input_model)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <FrontEnd 'pytorch'>
+model = <openvino._pyopenvino.InputModel object at 0x736e34c57ad0>
+
+    def convert(self, model: Union[Model, InputModel]) -> Model:
+>       converted_model = super().convert(model)
+                          ^^^^^^^^^^^^^^^^^^^^^^
+E       openvino._pyopenvino.OpConversionFailure: Check 'is_conversion_successful' failed at src/frontends/pytorch/src/frontend.cpp:181:
+E       FrontEnd API failed with OpConversionFailure:
+E       Model wasn't fully converted. Failed operations detailed log:
+E       -- prim::ListConstruct with a message:
+E       Exception happened during conversion of operation prim::ListConstruct with schema (no schema)
+E       Check '(c_node)' failed at src/frontends/pytorch/src/op/list_construct.cpp:25:
+E       FrontEnd API failed with OpConversionFailure:
+E       [PyTorch Frontend] Translation for prim::ListConstruct support only constant inputs
+E       
+E       Summary:
+E       -- No conversion rule found for operations: aten::linalg_multi_dot
+E       -- Conversion is failed for: prim::ListConstruct
+
+../../ov_src_env/lib/python3.12/site-packages/openvino/frontend/frontend.py:18: OpConversionFailure
+_ test_multi_dot_four_tensors_dp_optimal_split[ ie_device:GPU - precision:FP16 - dtype:torch.float32 ] _
+
+ie_device = 'GPU', precision = 'FP16', dtype = torch.float32
+
+    @pytest.mark.parametrize("dtype", [torch.float32])
+    def test_multi_dot_four_tensors_dp_optimal_split(ie_device, precision, dtype):
+        # 🇮🇱 ארבע מטריצות – בדיקת DP עם פיצול אופטימלי ((A@B)@(C@D)).
+        A = make_small_tensor((5, 60), dtype=dtype, seed=30)
+        B = make_small_tensor((60, 3), dtype=dtype, seed=31)
+        C = make_small_tensor((3, 70), dtype=dtype, seed=32)
+        D = make_small_tensor((70, 4), dtype=dtype, seed=33)
+>       pt, ovv, ov_model = run_pt_and_ov([A, B, C, D], ie_device, precision, dtype=dtype)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1738: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1622: in run_pt_and_ov
+    ov_model = ov.convert_model(model, example_input=example)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert.py:105: in convert_model
+    ov_model, _ = _convert(cli_parser, params, True)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:578: in _convert
+    raise e
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:518: in _convert
+    ov_model = driver(argv, {"conversion_parameters": non_default_params})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:256: in driver
+    ov_model = moc_emit_ir(prepare_ir(argv), argv)
+                           ^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:195: in prepare_ir
+    ov_model = moc_pipeline(argv, moc_front_end)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/moc_frontend/pipeline.py:142: in moc_pipeline
+    ov_model = moc_front_end.convert(input_model)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <FrontEnd 'pytorch'>
+model = <openvino._pyopenvino.InputModel object at 0x736e37fad550>
+
+    def convert(self, model: Union[Model, InputModel]) -> Model:
+>       converted_model = super().convert(model)
+                          ^^^^^^^^^^^^^^^^^^^^^^
+E       openvino._pyopenvino.OpConversionFailure: Check 'is_conversion_successful' failed at src/frontends/pytorch/src/frontend.cpp:181:
+E       FrontEnd API failed with OpConversionFailure:
+E       Model wasn't fully converted. Failed operations detailed log:
+E       -- prim::ListConstruct with a message:
+E       Exception happened during conversion of operation prim::ListConstruct with schema (no schema)
+E       Check '(c_node)' failed at src/frontends/pytorch/src/op/list_construct.cpp:25:
+E       FrontEnd API failed with OpConversionFailure:
+E       [PyTorch Frontend] Translation for prim::ListConstruct support only constant inputs
+E       
+E       Summary:
+E       -- No conversion rule found for operations: aten::linalg_multi_dot
+E       -- Conversion is failed for: prim::ListConstruct
+
+../../ov_src_env/lib/python3.12/site-packages/openvino/frontend/frontend.py:18: OpConversionFailure
+_ test_multi_dot_variable_shapes_small[ ie_device:CPU - precision:FP32 - dtype:torch.float32 ] _
+
+ie_device = 'CPU', precision = 'FP32', dtype = torch.float32
+
+    @pytest.mark.parametrize("dtype", [torch.float32])
+    def test_multi_dot_variable_shapes_small(ie_device, precision, dtype):
+        # 🇮🇱 מקרים קטנים/רנדומליים (כולל 1D בקצה אחד), כדי לכסות מסלולי קוד שונים.
+        a = make_small_tensor((4,), dtype=dtype, seed=40)      # (4,)
+        B = make_small_tensor((4, 3), dtype=dtype, seed=41)    # (4,3)
+        C = make_small_tensor((3, 2), dtype=dtype, seed=42)    # (3,2)
+        d = make_small_tensor((2,), dtype=dtype, seed=43)      # (2,)
+>       pt, ovv, _ = run_pt_and_ov([a, B, C, d], ie_device, precision, dtype=dtype)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1755: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1622: in run_pt_and_ov
+    ov_model = ov.convert_model(model, example_input=example)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert.py:105: in convert_model
+    ov_model, _ = _convert(cli_parser, params, True)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:578: in _convert
+    raise e
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:518: in _convert
+    ov_model = driver(argv, {"conversion_parameters": non_default_params})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:256: in driver
+    ov_model = moc_emit_ir(prepare_ir(argv), argv)
+                           ^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:195: in prepare_ir
+    ov_model = moc_pipeline(argv, moc_front_end)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/moc_frontend/pipeline.py:142: in moc_pipeline
+    ov_model = moc_front_end.convert(input_model)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <FrontEnd 'pytorch'>
+model = <openvino._pyopenvino.InputModel object at 0x736e34c55610>
+
+    def convert(self, model: Union[Model, InputModel]) -> Model:
+>       converted_model = super().convert(model)
+                          ^^^^^^^^^^^^^^^^^^^^^^
+E       openvino._pyopenvino.OpConversionFailure: Check 'is_conversion_successful' failed at src/frontends/pytorch/src/frontend.cpp:181:
+E       FrontEnd API failed with OpConversionFailure:
+E       Model wasn't fully converted. Failed operations detailed log:
+E       -- prim::ListConstruct with a message:
+E       Exception happened during conversion of operation prim::ListConstruct with schema (no schema)
+E       Check '(c_node)' failed at src/frontends/pytorch/src/op/list_construct.cpp:25:
+E       FrontEnd API failed with OpConversionFailure:
+E       [PyTorch Frontend] Translation for prim::ListConstruct support only constant inputs
+E       
+E       Summary:
+E       -- No conversion rule found for operations: aten::linalg_multi_dot
+E       -- Conversion is failed for: prim::ListConstruct
+
+../../ov_src_env/lib/python3.12/site-packages/openvino/frontend/frontend.py:18: OpConversionFailure
+_ test_multi_dot_variable_shapes_small[ ie_device:CPU - precision:FP16 - dtype:torch.float32 ] _
+
+ie_device = 'CPU', precision = 'FP16', dtype = torch.float32
+
+    @pytest.mark.parametrize("dtype", [torch.float32])
+    def test_multi_dot_variable_shapes_small(ie_device, precision, dtype):
+        # 🇮🇱 מקרים קטנים/רנדומליים (כולל 1D בקצה אחד), כדי לכסות מסלולי קוד שונים.
+        a = make_small_tensor((4,), dtype=dtype, seed=40)      # (4,)
+        B = make_small_tensor((4, 3), dtype=dtype, seed=41)    # (4,3)
+        C = make_small_tensor((3, 2), dtype=dtype, seed=42)    # (3,2)
+        d = make_small_tensor((2,), dtype=dtype, seed=43)      # (2,)
+>       pt, ovv, _ = run_pt_and_ov([a, B, C, d], ie_device, precision, dtype=dtype)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1755: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1622: in run_pt_and_ov
+    ov_model = ov.convert_model(model, example_input=example)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert.py:105: in convert_model
+    ov_model, _ = _convert(cli_parser, params, True)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:578: in _convert
+    raise e
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:518: in _convert
+    ov_model = driver(argv, {"conversion_parameters": non_default_params})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:256: in driver
+    ov_model = moc_emit_ir(prepare_ir(argv), argv)
+                           ^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:195: in prepare_ir
+    ov_model = moc_pipeline(argv, moc_front_end)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/moc_frontend/pipeline.py:142: in moc_pipeline
+    ov_model = moc_front_end.convert(input_model)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <FrontEnd 'pytorch'>
+model = <openvino._pyopenvino.InputModel object at 0x736e34c56330>
+
+    def convert(self, model: Union[Model, InputModel]) -> Model:
+>       converted_model = super().convert(model)
+                          ^^^^^^^^^^^^^^^^^^^^^^
+E       openvino._pyopenvino.OpConversionFailure: Check 'is_conversion_successful' failed at src/frontends/pytorch/src/frontend.cpp:181:
+E       FrontEnd API failed with OpConversionFailure:
+E       Model wasn't fully converted. Failed operations detailed log:
+E       -- prim::ListConstruct with a message:
+E       Exception happened during conversion of operation prim::ListConstruct with schema (no schema)
+E       Check '(c_node)' failed at src/frontends/pytorch/src/op/list_construct.cpp:25:
+E       FrontEnd API failed with OpConversionFailure:
+E       [PyTorch Frontend] Translation for prim::ListConstruct support only constant inputs
+E       
+E       Summary:
+E       -- No conversion rule found for operations: aten::linalg_multi_dot
+E       -- Conversion is failed for: prim::ListConstruct
+
+../../ov_src_env/lib/python3.12/site-packages/openvino/frontend/frontend.py:18: OpConversionFailure
+_ test_multi_dot_variable_shapes_small[ ie_device:GPU - precision:FP32 - dtype:torch.float32 ] _
+
+ie_device = 'GPU', precision = 'FP32', dtype = torch.float32
+
+    @pytest.mark.parametrize("dtype", [torch.float32])
+    def test_multi_dot_variable_shapes_small(ie_device, precision, dtype):
+        # 🇮🇱 מקרים קטנים/רנדומליים (כולל 1D בקצה אחד), כדי לכסות מסלולי קוד שונים.
+        a = make_small_tensor((4,), dtype=dtype, seed=40)      # (4,)
+        B = make_small_tensor((4, 3), dtype=dtype, seed=41)    # (4,3)
+        C = make_small_tensor((3, 2), dtype=dtype, seed=42)    # (3,2)
+        d = make_small_tensor((2,), dtype=dtype, seed=43)      # (2,)
+>       pt, ovv, _ = run_pt_and_ov([a, B, C, d], ie_device, precision, dtype=dtype)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1755: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1622: in run_pt_and_ov
+    ov_model = ov.convert_model(model, example_input=example)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert.py:105: in convert_model
+    ov_model, _ = _convert(cli_parser, params, True)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:578: in _convert
+    raise e
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:518: in _convert
+    ov_model = driver(argv, {"conversion_parameters": non_default_params})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:256: in driver
+    ov_model = moc_emit_ir(prepare_ir(argv), argv)
+                           ^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:195: in prepare_ir
+    ov_model = moc_pipeline(argv, moc_front_end)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/moc_frontend/pipeline.py:142: in moc_pipeline
+    ov_model = moc_front_end.convert(input_model)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <FrontEnd 'pytorch'>
+model = <openvino._pyopenvino.InputModel object at 0x736e34c57bf0>
+
+    def convert(self, model: Union[Model, InputModel]) -> Model:
+>       converted_model = super().convert(model)
+                          ^^^^^^^^^^^^^^^^^^^^^^
+E       openvino._pyopenvino.OpConversionFailure: Check 'is_conversion_successful' failed at src/frontends/pytorch/src/frontend.cpp:181:
+E       FrontEnd API failed with OpConversionFailure:
+E       Model wasn't fully converted. Failed operations detailed log:
+E       -- prim::ListConstruct with a message:
+E       Exception happened during conversion of operation prim::ListConstruct with schema (no schema)
+E       Check '(c_node)' failed at src/frontends/pytorch/src/op/list_construct.cpp:25:
+E       FrontEnd API failed with OpConversionFailure:
+E       [PyTorch Frontend] Translation for prim::ListConstruct support only constant inputs
+E       
+E       Summary:
+E       -- No conversion rule found for operations: aten::linalg_multi_dot
+E       -- Conversion is failed for: prim::ListConstruct
+
+../../ov_src_env/lib/python3.12/site-packages/openvino/frontend/frontend.py:18: OpConversionFailure
+_ test_multi_dot_variable_shapes_small[ ie_device:GPU - precision:FP16 - dtype:torch.float32 ] _
+
+ie_device = 'GPU', precision = 'FP16', dtype = torch.float32
+
+    @pytest.mark.parametrize("dtype", [torch.float32])
+    def test_multi_dot_variable_shapes_small(ie_device, precision, dtype):
+        # 🇮🇱 מקרים קטנים/רנדומליים (כולל 1D בקצה אחד), כדי לכסות מסלולי קוד שונים.
+        a = make_small_tensor((4,), dtype=dtype, seed=40)      # (4,)
+        B = make_small_tensor((4, 3), dtype=dtype, seed=41)    # (4,3)
+        C = make_small_tensor((3, 2), dtype=dtype, seed=42)    # (3,2)
+        d = make_small_tensor((2,), dtype=dtype, seed=43)      # (2,)
+>       pt, ovv, _ = run_pt_and_ov([a, B, C, d], ie_device, precision, dtype=dtype)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1755: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py:1622: in run_pt_and_ov
+    ov_model = ov.convert_model(model, example_input=example)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert.py:105: in convert_model
+    ov_model, _ = _convert(cli_parser, params, True)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:578: in _convert
+    raise e
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:518: in _convert
+    ov_model = driver(argv, {"conversion_parameters": non_default_params})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:256: in driver
+    ov_model = moc_emit_ir(prepare_ir(argv), argv)
+                           ^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:195: in prepare_ir
+    ov_model = moc_pipeline(argv, moc_front_end)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ov_src_env/lib/python3.12/site-packages/openvino/tools/ovc/moc_frontend/pipeline.py:142: in moc_pipeline
+    ov_model = moc_front_end.convert(input_model)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <FrontEnd 'pytorch'>
+model = <openvino._pyopenvino.InputModel object at 0x736e34c54b30>
+
+    def convert(self, model: Union[Model, InputModel]) -> Model:
+>       converted_model = super().convert(model)
+                          ^^^^^^^^^^^^^^^^^^^^^^
+E       openvino._pyopenvino.OpConversionFailure: Check 'is_conversion_successful' failed at src/frontends/pytorch/src/frontend.cpp:181:
+E       FrontEnd API failed with OpConversionFailure:
+E       Model wasn't fully converted. Failed operations detailed log:
+E       -- prim::ListConstruct with a message:
+E       Exception happened during conversion of operation prim::ListConstruct with schema (no schema)
+E       Check '(c_node)' failed at src/frontends/pytorch/src/op/list_construct.cpp:25:
+E       FrontEnd API failed with OpConversionFailure:
+E       [PyTorch Frontend] Translation for prim::ListConstruct support only constant inputs
+E       
+E       Summary:
+E       -- No conversion rule found for operations: aten::linalg_multi_dot
+E       -- Conversion is failed for: prim::ListConstruct
+
+../../ov_src_env/lib/python3.12/site-packages/openvino/frontend/frontend.py:18: OpConversionFailure
+=============================== warnings summary ===============================
+../../../../usr/lib/python3.12/multiprocessing/popen_fork.py:66: 2 warnings
+pytorch_tests/test_linalg_multi_dot.py: 77 warnings
+  /usr/lib/python3.12/multiprocessing/popen_fork.py:66: DeprecationWarning: This process (pid=37900) is multi-threaded, use of fork() may lead to deadlocks in the child.
+    self.pid = os.fork()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py::test_multi_dot_two_tensors[ ie_device:CPU - precision:FP32 - dtype:torch.float32 ]
+FAILED tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py::test_multi_dot_two_tensors[ ie_device:CPU - precision:FP32 - dtype:torch.float64 ]
+FAILED tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py::test_multi_dot_two_tensors[ ie_device:CPU - precision:FP16 - dtype:torch.float32 ]
+FAILED tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py::test_multi_dot_two_tensors[ ie_device:CPU - precision:FP16 - dtype:torch.float64 ]
+FAILED tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py::test_multi_dot_two_tensors[ ie_device:GPU - precision:FP32 - dtype:torch.float32 ]
+FAILED tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py::test_multi_dot_two_tensors[ ie_device:GPU - precision:FP32 - dtype:torch.float64 ]
+FAILED tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py::test_multi_dot_two_tensors[ ie_device:GPU - precision:FP16 - dtype:torch.float32 ]
+FAILED tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py::test_multi_dot_two_tensors[ ie_device:GPU - precision:FP16 - dtype:torch.float64 ]
+FAILED tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py::test_multi_dot_1d_endpoints[ ie_device:CPU - precision:FP32 - dtype:torch.float32 ]
+FAILED tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py::test_multi_dot_1d_endpoints[ ie_device:CPU - precision:FP16 - dtype:torch.float32 ]
+FAILED tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py::test_multi_dot_1d_endpoints[ ie_device:GPU - precision:FP32 - dtype:torch.float32 ]
+FAILED tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py::test_multi_dot_1d_endpoints[ ie_device:GPU - precision:FP16 - dtype:torch.float32 ]
+FAILED tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py::test_multi_dot_three_tensors_heuristic_picks_AB_then_C[ ie_device:CPU - precision:FP32 - dtype:torch.float32 ]
+FAILED tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py::test_multi_dot_three_tensors_heuristic_picks_AB_then_C[ ie_device:CPU - precision:FP16 - dtype:torch.float32 ]
+FAILED tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py::test_multi_dot_three_tensors_heuristic_picks_AB_then_C[ ie_device:GPU - precision:FP32 - dtype:torch.float32 ]
+FAILED tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py::test_multi_dot_three_tensors_heuristic_picks_AB_then_C[ ie_device:GPU - precision:FP16 - dtype:torch.float32 ]
+FAILED tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py::test_multi_dot_three_tensors_heuristic_picks_A_then_BC[ ie_device:CPU - precision:FP32 - dtype:torch.float32 ]
+FAILED tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py::test_multi_dot_three_tensors_heuristic_picks_A_then_BC[ ie_device:CPU - precision:FP16 - dtype:torch.float32 ]
+FAILED tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py::test_multi_dot_three_tensors_heuristic_picks_A_then_BC[ ie_device:GPU - precision:FP32 - dtype:torch.float32 ]
+FAILED tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py::test_multi_dot_three_tensors_heuristic_picks_A_then_BC[ ie_device:GPU - precision:FP16 - dtype:torch.float32 ]
+FAILED tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py::test_multi_dot_four_tensors_dp_optimal_split[ ie_device:CPU - precision:FP32 - dtype:torch.float32 ]
+FAILED tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py::test_multi_dot_four_tensors_dp_optimal_split[ ie_device:CPU - precision:FP16 - dtype:torch.float32 ]
+FAILED tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py::test_multi_dot_four_tensors_dp_optimal_split[ ie_device:GPU - precision:FP32 - dtype:torch.float32 ]
+FAILED tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py::test_multi_dot_four_tensors_dp_optimal_split[ ie_device:GPU - precision:FP16 - dtype:torch.float32 ]
+FAILED tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py::test_multi_dot_variable_shapes_small[ ie_device:CPU - precision:FP32 - dtype:torch.float32 ]
+FAILED tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py::test_multi_dot_variable_shapes_small[ ie_device:CPU - precision:FP16 - dtype:torch.float32 ]
+FAILED tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py::test_multi_dot_variable_shapes_small[ ie_device:GPU - precision:FP32 - dtype:torch.float32 ]
+FAILED tests/layer_tests/pytorch_tests/test_linalg_multi_dot.py::test_multi_dot_variable_shapes_small[ ie_device:GPU - precision:FP16 - dtype:torch.float32 ]
+28 failed, 79 warnings in 3.79s
+/usr/lib/python3.12/multiprocessing/popen_fork.py:66: DeprecationWarning: This process (pid=37900) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  self.pid = os.fork()
+/usr/lib/python3.12/multiprocessing/popen_fork.py:66: DeprecationWarning: This process (pid=37900) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  self.pid = os.fork()
+/usr/lib/python3.12/multiprocessing/popen_fork.py:66: DeprecationWarning: This process (pid=37900) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  self.pid = os.fork()
+/usr/lib/python3.12/multiprocessing/popen_fork.py:66: DeprecationWarning: This process (pid=37900) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  self.pid = os.fork()

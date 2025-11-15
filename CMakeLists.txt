@@ -70,6 +70,7 @@ message (STATUS "CPACK_GENERATOR ....................... " ${CPACK_GENERATOR})
 message (STATUS "CMAKE_C_COMPILER_ID ................... " ${CMAKE_C_COMPILER_ID})
 message (STATUS "CMAKE_CXX_COMPILER_ID ................. " ${CMAKE_CXX_COMPILER_ID})
 message (STATUS "CMAKE_CXX_STANDARD .................... " ${CMAKE_CXX_STANDARD})
+
 if(OV_GENERATOR_MULTI_CONFIG)
     string(REPLACE ";" " " config_types "${CMAKE_CONFIGURATION_TYPES}")
     message (STATUS "CMAKE_CONFIGURATION_TYPES ............. " ${config_types})
@@ -181,3 +182,4 @@ endif()
 include(cmake/packaging/packaging.cmake)
 
 ov_cpack(${OV_CPACK_COMPONENTS_ALL})
+message (STATUS "😍this is the main cmake ................. " )

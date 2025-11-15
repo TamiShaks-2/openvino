@@ -1,0 +1,214 @@
+-- OpenVINO version is 2025.4.0 (Build 2)
+-- Found clang-format: CLANG_FORMAT-NOTFOUND
+CMake Warning at cmake/developer_package/clang_format/clang_format.cmake:23 (message):
+  Supported clang-format-18 is not found!
+Call Stack (most recent call first):
+  cmake/developer_package/OpenVINODeveloperScriptsConfig.cmake:314 (include)
+  CMakeLists.txt:44 (find_package)
+
+
+CMake Warning at cmake/developer_package/ncc_naming_style/ncc_naming_style.cmake:91 (message):
+  clang-15 libclang-15-dev are not found (required for ncc naming style
+  check)
+Call Stack (most recent call first):
+  cmake/developer_package/OpenVINODeveloperScriptsConfig.cmake:316 (include)
+  CMakeLists.txt:44 (find_package)
+
+
+-- OpenVINO Runtime enabled features: 
+-- 
+--     CI_BUILD_NUMBER: 2025.4.0-2-aa104534043-feature/pytorch-multi-dot
+--     ENABLE_LTO = OFF
+--     OS_FOLDER = OFF
+--     USE_BUILD_TYPE_SUBFOLDER = ON
+--     CMAKE_COMPILE_WARNING_AS_ERROR = OFF
+--     ENABLE_QSPECTRE = OFF
+--     ENABLE_INTEGRITYCHECK = OFF
+--     ENABLE_SANITIZER = OFF
+--     ENABLE_UB_SANITIZER = OFF
+--     ENABLE_THREAD_SANITIZER = OFF
+--     ENABLE_COVERAGE = OFF
+--     ENABLE_API_VALIDATOR = OFF
+--     ENABLE_PDB_IN_RELEASE = OFF
+--     ENABLE_SSE42 = ON
+--     ENABLE_AVX2 = ON
+--     ENABLE_AVX512F = ON
+--     ENABLE_NEON_FP16 = OFF
+--     ENABLE_SVE = OFF
+--     BUILD_SHARED_LIBS = ON
+--     ENABLE_LIBRARY_VERSIONING = ON
+--     ENABLE_FASTER_BUILD = OFF
+--     ENABLE_CPPLINT = ON
+--     ENABLE_CPPLINT_REPORT = OFF
+--     ENABLE_CLANG_FORMAT = OFF
+--     ENABLE_CLANG_TIDY = OFF
+--     ENABLE_CLANG_TIDY_FIX = OFF
+--     ENABLE_NCC_STYLE = OFF
+--     ENABLE_UNSAFE_LOCATIONS = OFF
+--     ENABLE_FUZZING = OFF
+--     ENABLE_PROXY = ON
+--     ENABLE_INTEL_CPU = ON
+--     ENABLE_ARM_COMPUTE_CMAKE = OFF
+--     ENABLE_TESTS = OFF
+--     ENABLE_INTEL_GPU = OFF
+--     ENABLE_ONEDNN_FOR_GPU = OFF
+--     ENABLE_INTEL_NPU = ON
+--     ENABLE_INTEL_NPU_INTERNAL = ON
+--     ENABLE_DEBUG_CAPS = OFF
+--     ENABLE_NPU_DEBUG_CAPS = OFF
+--     ENABLE_GPU_DEBUG_CAPS = OFF
+--     ENABLE_CPU_DEBUG_CAPS = OFF
+--     ENABLE_SNIPPETS_DEBUG_CAPS = OFF
+--     ENABLE_SNIPPETS_LIBXSMM_TPP = OFF
+--     ENABLE_PROFILING_ITT = OFF
+--     ENABLE_PROFILING_FILTER = ALL
+--     ENABLE_PROFILING_FIRST_INFERENCE = ON
+--     SELECTIVE_BUILD = OFF
+--     ENABLE_DOCS = OFF
+--     ENABLE_PKGCONFIG_GEN = ON
+--     THREADING = TBB
+--     ENABLE_INTEL_OPENMP = OFF
+--     ENABLE_TBBBIND_2_5 = ON
+--     ENABLE_TBB_RELEASE_ONLY = ON
+--     ENABLE_MULTI = ON
+--     ENABLE_AUTO = ON
+--     ENABLE_AUTO_BATCH = ON
+--     ENABLE_HETERO = ON
+--     ENABLE_TEMPLATE = ON
+--     ENABLE_PLUGINS_XML = OFF
+--     ENABLE_FUNCTIONAL_TESTS = OFF
+--     ENABLE_SAMPLES = OFF
+--     ENABLE_GIL_PYTHON_API = ON
+--     ENABLE_OV_ONNX_FRONTEND = ON
+--     ENABLE_OV_PADDLE_FRONTEND = ON
+--     ENABLE_OV_IR_FRONTEND = ON
+--     ENABLE_OV_PYTORCH_FRONTEND = ON
+--     ENABLE_OV_JAX_FRONTEND = ON
+--     ENABLE_OV_IR_FRONTEND = ON
+--     ENABLE_OV_TF_FRONTEND = ON
+--     ENABLE_OV_TF_LITE_FRONTEND = ON
+--     ENABLE_SNAPPY_COMPRESSION = ON
+--     ENABLE_STRICT_DEPENDENCIES = OFF
+--     ENABLE_SYSTEM_TBB = OFF
+--     ENABLE_SYSTEM_PUGIXML = OFF
+--     ENABLE_SYSTEM_FLATBUFFERS = ON
+--     ENABLE_SYSTEM_OPENCL = OFF
+--     ENABLE_SYSTEM_PROTOBUF = OFF
+--     ENABLE_SYSTEM_SNAPPY = OFF
+--     ENABLE_SYSTEM_LEVEL_ZERO = OFF
+--     ENABLE_JS = ON
+--     ENABLE_OPENVINO_DEBUG = OFF
+-- 
+-- CMAKE_VERSION ......................... 3.28.3
+-- CMAKE_CROSSCOMPILING .................. FALSE
+-- OpenVINO_SOURCE_DIR ................... /home/tamar/myOptproject/openvino
+-- OpenVINO_BINARY_DIR ................... /home/tamar/myOptproject/openvino/build
+-- CMAKE_GENERATOR ....................... Ninja
+-- CPACK_GENERATOR ....................... TGZ
+-- CMAKE_C_COMPILER_ID ................... GNU
+-- CMAKE_CXX_COMPILER_ID ................. GNU
+-- CMAKE_CXX_STANDARD .................... 17
+-- CMAKE_BUILD_TYPE ...................... RelWithDebInfo
+-- LIBC_VERSION .......................... 2.39
+-- STDLIB ................................ GNU
+-- Building loader as dynamic library
+-- Saved Product GUID: 1.24.3
+-- project version: 1.24.3
+-- Using Product GUID: 72991b5e-a0c0-4605-8317-125abfaf9650 for version 1.24.3
+-- Protocol Buffers Configuring...
+-- 
+-- 3.21.12.0
+-- Configuration script parsing status [
+--   Description : Protocol Buffers
+--   Version     : 3.21.12.0 (3.21.12)
+--   Contact     : protobuf@googlegroups.com
+-- ]
+-- Protocol Buffers Configuring done
+fatal: No names found, cannot describe anything.
+CMake Warning at thirdparty/flatbuffers/flatbuffers/CMake/Version.cmake:32 (message):
+  git describe failed with exit code: 128
+
+  Make sure you cloned with tags or run 'git fetch --tags'.
+Call Stack (most recent call first):
+  thirdparty/flatbuffers/flatbuffers/CMakeLists.txt:5 (include)
+
+
+-- Proceeding with version: 24.3.25.0
+-- CMAKE_CXX_FLAGS: -Wsuggest-override  -fsigned-char -ffunction-sections -fdata-sections -fdiagnostics-show-option -Wall -Wundef -Wno-suggest-override
+CMake Warning (dev) at thirdparty/onnx/onnx/CMakeLists.txt:106 (find_package):
+  Policy CMP0148 is not set: The FindPythonInterp and FindPythonLibs modules
+  are removed.  Run "cmake --help-policy CMP0148" for policy details.  Use
+  the cmake_policy command to set the policy and suppress this warning.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+Generated: /home/tamar/myOptproject/openvino/build/thirdparty/onnx/onnx/onnx/onnx_openvino_onnx-ml.proto
+Generated: /home/tamar/myOptproject/openvino/build/thirdparty/onnx/onnx/onnx/onnx-operators_openvino_onnx-ml.proto
+Generated: /home/tamar/myOptproject/openvino/build/thirdparty/onnx/onnx/onnx/onnx-data_openvino_onnx.proto
+-- 
+-- ******** Summary ********
+--   CMake version                     : 3.28.3
+--   CMake command                     : /usr/bin/cmake
+--   System                            : Linux
+--   C++ compiler                      : /usr/bin/c++
+--   C++ compiler version              : 13.3.0
+--   CXX flags                         : -Wsuggest-override  -fsigned-char -ffunction-sections -fdata-sections -fdiagnostics-show-option -Wall -Wundef -Wno-suggest-override -Wnon-virtual-dtor
+--   Build type                        : RelWithDebInfo
+--   Compile definitions               : OV_BUILD_POSTFIX="";OV_NATIVE_PARENT_PROJECT_ROOT_DIR="openvino";__STDC_FORMAT_MACROS
+--   CMAKE_PREFIX_PATH                 : 
+--   CMAKE_INSTALL_PREFIX              : /usr/local
+--   CMAKE_MODULE_PATH                 : 
+-- 
+--   ONNX version                      : 1.17.0
+--   ONNX NAMESPACE                    : openvino_onnx
+--   ONNX_USE_LITE_PROTO               : ON
+--   USE_PROTOBUF_SHARED_LIBS          : OFF
+--   Protobuf_USE_STATIC_LIBS          : ON
+--   ONNX_DISABLE_EXCEPTIONS           : OFF
+--   ONNX_DISABLE_STATIC_REGISTRATION  : OFF
+--   ONNX_WERROR                       : OFF
+--   ONNX_BUILD_TESTS                  : OFF
+--   ONNX_BUILD_SHARED_LIBS            : 
+--   BUILD_SHARED_LIBS                 : OFF
+-- 
+--   Protobuf compiler                 : 
+--   Protobuf includes                 : 
+--   Protobuf libraries                : 
+--   BUILD_ONNX_PYTHON                 : OFF
+-- Using the multi-header code from /home/tamar/myOptproject/openvino/thirdparty/json/nlohmann_json/include/
+-- TBB (2021.13.1) is found at /home/tamar/myOptproject/openvino/temp/Linux_x86_64/tbb/lib/cmake/TBB
+-- Static tbbbind_2_5 package usage is disabled, since oneTBB (ver. 2021.13.1) provides dynamic TBBBind 2.5+
+🧁this is cmake of pytorch/src......................
+🐅this is cmake of pytorch..............
+👩‍🏫this is cmake of fronted..............
+-- DNNL_TARGET_ARCH: X64
+-- DNNL_LIBRARY_NAME: openvino_onednn_cpu
+-- Enabled testing coverage: CI
+-- Enabled workload: INFERENCE
+-- Enabled primitives: CONVOLUTION;DECONVOLUTION;CONCAT;LRN;INNER_PRODUCT;MATMUL;POOLING;REDUCTION;REORDER;RNN;SOFTMAX
+-- Enabled primitive CPU ISA: ALL
+-- Enabled primitive GPU ISA: ALL
+-- Enabled GeMM kernels ISA: SSE41
+-- Primitive cache is enabled
+-- NPU protopipe tool is disabled due to missing dependencies: gapi from OpenCV >= 4.9.
+-- Python3 executable: /home/tamar/ov_src_env/bin/python3
+-- Python3 version: 3.12.3
+-- Python3 interpreter ID: Python
+-- Python3 SOABI: cpython-312-x86_64-linux-gnu
+-- PYTHON_MODULE_EXTENSION: .cpython-312-x86_64-linux-gnu.so
+-- Python3 include dirs: /usr/include/python3.12
+-- Python3 libraries: 
+-- pybind11 v3.0.0 
+🤣this is cmake of src....................
+-- Register template to be built in build-modules/template
+-- Register template_extension to be built in build-modules/template_extension
+CMake Warning at cmake/developer_package/shellcheck/shellcheck.cmake:22 (message):
+  shellcheck tool is not found
+Call Stack (most recent call first):
+  scripts/CMakeLists.txt:19 (ov_shellcheck_process)
+
+
+-- 😍this is the main cmake ................. 
+-- Configuring done (14.7s)
+-- Generating done (0.4s)
+-- Build files have been written to: /home/tamar/myOptproject/openvino/build

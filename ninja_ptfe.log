@@ -1,0 +1,8 @@
+ninja: Entering directory `build'
+[0/2] Re-checking globbed directories...
+[1/3] Building CXX object src/frontends/pytorch/src/CMakeFiles/openvino_pytorch_frontend.dir/op/translate_multi_dot.cpp.o
+/home/tamar/myOptproject/openvino/src/frontends/pytorch/src/op/translate_multi_dot.cpp:194:64: note: ‘#pragma message: >>>🎉✨ COMPILING translate_multi_dot.cpp <<<’
+  194 | #pragma message(">>>🎉✨ COMPILING translate_multi_dot.cpp <<<")
+      |                                                                ^
+[2/3] Linking CXX shared library /home/tamar/myOptproject/openvino/bin/intel64/RelWithDebInfo/libopenvino_pytorch_frontend.so.2025.4.0
+[3/3] Creating library symlink /home/tamar/myOptproject/openvino/bin/intel64/RelWithDebInfo/libopenvino_pytorch_frontend.so.2540 /home/tamar/myOptproject/openvino/bin/intel64/RelWithDebInfo/libopenvino_pytorch_frontend.so

@@ -1,0 +1,17 @@
+
+==================================== ERRORS ====================================
+________ ERROR collecting pytorch_tests/test_linalg_multi_dot_const.py _________
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot_const.py:43: in <module>
+    tests/layer_tests/pytorch_tests/test_linalg_multi_dot_reached.py
+    ^^^^^
+E   NameError: name 'tests' is not defined
+=============================== warnings summary ===============================
+../../../../usr/lib/python3.12/multiprocessing/popen_fork.py:66
+  /usr/lib/python3.12/multiprocessing/popen_fork.py:66: DeprecationWarning: This process (pid=21042) is multi-threaded, use of fork() may lead to deadlocks in the child.
+    self.pid = os.fork()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+ERROR tests/layer_tests/pytorch_tests/test_linalg_multi_dot_const.py - NameEr...
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 warning, 1 error in 0.19s

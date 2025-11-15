@@ -30,7 +30,7 @@ add_subdirectory(plugins)
 add_subdirectory(inference)
 include(cmake/openvino.cmake)
 add_subdirectory(bindings)
-
+message("🤣this is cmake of src....................")
 if(ENABLE_TESTS)
     add_subdirectory(core/tests)
     add_subdirectory(tests)

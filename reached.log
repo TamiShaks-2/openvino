@@ -1,0 +1,111 @@
+FFFF
+=================================== FAILURES ===================================
+_ test_translate_multi_dot_reached[ ie_device:CPU - precision:FP32 - dummy:0 ] _
+
+ie_device = 'CPU', precision = 'FP32', ir_version = 11, dummy = 0
+
+    @pytest.mark.parametrize("dummy", [0])
+    def test_translate_multi_dot_reached(ie_device, precision, ir_version, dummy):
+        # ניקוי לוג קודם
+        try: os.remove(LOG_PATH)
+        except FileNotFoundError: pass
+    
+        mod = MultiDotConstModule().eval()
+        scripted = torch.jit.script(mod)
+        frozen = torch.jit.freeze(scripted)
+    
+        import openvino as ov
+        _ = ov.convert_model(frozen)  # בזמן convert אמור להיכתב ללוג
+    
+        # אימות שהלוג נכתב
+>       with open(LOG_PATH, "rt") as f:
+             ^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tmp/ov_fe_pt.log'
+
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot_const.py:78: FileNotFoundError
+_ test_translate_multi_dot_reached[ ie_device:CPU - precision:FP16 - dummy:0 ] _
+
+ie_device = 'CPU', precision = 'FP16', ir_version = 11, dummy = 0
+
+    @pytest.mark.parametrize("dummy", [0])
+    def test_translate_multi_dot_reached(ie_device, precision, ir_version, dummy):
+        # ניקוי לוג קודם
+        try: os.remove(LOG_PATH)
+        except FileNotFoundError: pass
+    
+        mod = MultiDotConstModule().eval()
+        scripted = torch.jit.script(mod)
+        frozen = torch.jit.freeze(scripted)
+    
+        import openvino as ov
+        _ = ov.convert_model(frozen)  # בזמן convert אמור להיכתב ללוג
+    
+        # אימות שהלוג נכתב
+>       with open(LOG_PATH, "rt") as f:
+             ^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tmp/ov_fe_pt.log'
+
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot_const.py:78: FileNotFoundError
+_ test_translate_multi_dot_reached[ ie_device:GPU - precision:FP32 - dummy:0 ] _
+
+ie_device = 'GPU', precision = 'FP32', ir_version = 11, dummy = 0
+
+    @pytest.mark.parametrize("dummy", [0])
+    def test_translate_multi_dot_reached(ie_device, precision, ir_version, dummy):
+        # ניקוי לוג קודם
+        try: os.remove(LOG_PATH)
+        except FileNotFoundError: pass
+    
+        mod = MultiDotConstModule().eval()
+        scripted = torch.jit.script(mod)
+        frozen = torch.jit.freeze(scripted)
+    
+        import openvino as ov
+        _ = ov.convert_model(frozen)  # בזמן convert אמור להיכתב ללוג
+    
+        # אימות שהלוג נכתב
+>       with open(LOG_PATH, "rt") as f:
+             ^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tmp/ov_fe_pt.log'
+
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot_const.py:78: FileNotFoundError
+_ test_translate_multi_dot_reached[ ie_device:GPU - precision:FP16 - dummy:0 ] _
+
+ie_device = 'GPU', precision = 'FP16', ir_version = 11, dummy = 0
+
+    @pytest.mark.parametrize("dummy", [0])
+    def test_translate_multi_dot_reached(ie_device, precision, ir_version, dummy):
+        # ניקוי לוג קודם
+        try: os.remove(LOG_PATH)
+        except FileNotFoundError: pass
+    
+        mod = MultiDotConstModule().eval()
+        scripted = torch.jit.script(mod)
+        frozen = torch.jit.freeze(scripted)
+    
+        import openvino as ov
+        _ = ov.convert_model(frozen)  # בזמן convert אמור להיכתב ללוג
+    
+        # אימות שהלוג נכתב
+>       with open(LOG_PATH, "rt") as f:
+             ^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tmp/ov_fe_pt.log'
+
+tests/layer_tests/pytorch_tests/test_linalg_multi_dot_const.py:78: FileNotFoundError
+=============================== warnings summary ===============================
+../../../../usr/lib/python3.12/multiprocessing/popen_fork.py:66: 1 warning
+pytorch_tests/test_linalg_multi_dot_const.py: 16 warnings
+  /usr/lib/python3.12/multiprocessing/popen_fork.py:66: DeprecationWarning: This process (pid=19160) is multi-threaded, use of fork() may lead to deadlocks in the child.
+    self.pid = os.fork()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/layer_tests/pytorch_tests/test_linalg_multi_dot_const.py::test_translate_multi_dot_reached[ ie_device:CPU - precision:FP32 - dummy:0 ]
+FAILED tests/layer_tests/pytorch_tests/test_linalg_multi_dot_const.py::test_translate_multi_dot_reached[ ie_device:CPU - precision:FP16 - dummy:0 ]
+FAILED tests/layer_tests/pytorch_tests/test_linalg_multi_dot_const.py::test_translate_multi_dot_reached[ ie_device:GPU - precision:FP32 - dummy:0 ]
+FAILED tests/layer_tests/pytorch_tests/test_linalg_multi_dot_const.py::test_translate_multi_dot_reached[ ie_device:GPU - precision:FP16 - dummy:0 ]
+4 failed, 17 warnings in 0.58s
+/usr/lib/python3.12/multiprocessing/popen_fork.py:66: DeprecationWarning: This process (pid=19160) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  self.pid = os.fork()
+/usr/lib/python3.12/multiprocessing/popen_fork.py:66: DeprecationWarning: This process (pid=19160) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  self.pid = os.fork()
