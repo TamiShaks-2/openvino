@@ -27,11 +27,26 @@ target_link_libraries(${TARGET_NAME}
 
 add_dependencies(${TARGET_NAME} test_builtin_extensions)
 
+# build a test binary for this source file
+add_executable(multi_dot_opt_test src/multi_dot_opt_test.cpp)
+
+# link the test binary to the static library and the gtest main target
+target_link_libraries(multi_dot_opt_test
+        PRIVATE
+                frontend_shared_test_classes
+                gtest_main
+)
+
+# register the test so ctest can find it
+add_test(NAME multi_dot_opt_test COMMAND multi_dot_opt_test)
+
 target_compile_definitions(${TARGET_NAME}
-    PRIVATE
-        SHARED_LIB_PREFIX="${CMAKE_SHARED_LIBRARY_PREFIX}"
-        SHARED_LIB_SUFFIX="${OV_BUILD_POSTFIX}${CMAKE_SHARED_LIBRARY_SUFFIX}")
+        PRIVATE
+                SHARED_LIB_PREFIX="${CMAKE_SHARED_LIBRARY_PREFIX}"
+                SHARED_LIB_SUFFIX="${OV_BUILD_POSTFIX}${CMAKE_SHARED_LIBRARY_SUFFIX}"
+)
 
 ov_add_clang_format_target(${TARGET_NAME}_clang FOR_TARGETS ${TARGET_NAME})
 
 ov_build_target_faster(${TARGET_NAME} PCH)
+message("🐎🐆this is cmake of the culc tests")

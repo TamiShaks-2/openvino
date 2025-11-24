@@ -860,3 +860,5 @@ def test_linalg_multi_dot_error_too_few_tensors(ie_device, precision, ir_version
 #         f"Expected at least {n_tensors - 1} MatMul nodes for "
 #         f"{n_tensors}-tensor multi_dot chain, got {len(matmuls)}"
 #     )
+
+

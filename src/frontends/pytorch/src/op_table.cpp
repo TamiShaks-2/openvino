@@ -176,14 +176,6 @@ OP_CONVERTER(translate_min);
 OP_CONVERTER(translate_minimum);
 OP_CONVERTER(translate_movedim);
 OP_CONVERTER(translate_multinomial);
-// --- BEGIN DEBUG ---
-#if defined(__GNUC__)
-#  warning ">>>❤️‍🩹 OP_CONVERTER seen: translate_multi_dot"
-#else
-#  pragma message(">>> ✡️OP_CONVERTER seen: translate_multi_dot")
-#endif
-// --- END DEBUG ---
-
 OP_CONVERTER(translate_multi_dot);
 OP_CONVERTER(translate_narrow);
 OP_CONVERTER(translate_native_multi_head_attention);
@@ -593,14 +585,6 @@ const std::unordered_map<std::string, CreatorFunction> get_supported_ops_ts() {
         {"aten::linalg_inv", op::translate_inverse},
         {"aten::linalg_norm", op::translate_linalg_norm},
         {"aten::linalg_matrix_norm", op::translate_linalg_matrix_norm},
-        // --- BEGIN DEBUG ---
-        #if defined(__GNUC__)
-        #  warning ">>> 🪐🌍OP_TABLE: registering aten::linalg_multi_dot -> translate_multi_dot"
-        #else
-        #  pragma message(">>>  🪐🌍 OP_TABLE: registering aten::linalg_multi_dot -> translate_multi_dot")
-        #endif
-        // --- END DEBUG ---
-
         {"aten::linalg_multi_dot", op::translate_multi_dot},
         {"aten::linalg_vector_norm", op::translate_linalg_vector_norm},
         {"aten::linear", op::translate_linear},
